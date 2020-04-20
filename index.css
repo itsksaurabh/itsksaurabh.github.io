@@ -453,11 +453,9 @@ body {
   }
 
   #display {
-    width: 90vw;
-    padding: 4vh 5vw;
-    height: auto;
     display: inline-block;
-    padding-left: 5vw;
+    width: 100%;
+    padding: 10% 20%;
   }
 
   #profile_img {
@@ -471,7 +469,7 @@ body {
   }
 
   #work {
-    margin: 0px;
+    width: 100%;
   }
 
   .projects {
