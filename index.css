@@ -63,6 +63,17 @@ body {
   background-repeat: no-repeat;
   position: fixed;
   color: #fff !important;
+  /* float animation */
+  animation-name: floating;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  from { transform: translate(0,  0px); }
+  65%  { transform: translate(0, 10px); }
+  to   { transform: translate(0, -0px); }    
 }
 
 #display {
@@ -229,7 +240,8 @@ body {
   min-height: 180px;
   max-width: 180px;
   max-height: 180px;
-  border-radius: 5px;
+  border-radius: 100px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
@@ -433,10 +445,11 @@ body {
 @media (max-width: 800px) {
   #profile {
     width: 90vw;
-    padding: 4vh 5vw;
+    padding: 15vh 5vw;
     height: 60vh;
     text-align: center;
     position: relative;
+    background: var(--background-image) left 60% center;
   }
 
   #display {
@@ -533,30 +546,18 @@ body {
   }
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-color);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--text-color);
-}
 :root {
   --bg-color: rgb(10, 10, 10);
   --text-color: #fff;
   --blog-gray-color: rgb(180, 180, 180);
   --background-image: linear-gradient(
-      90deg,
+      45deg,
       rgba(10, 10, 10, 0.3),
       rgb(10, 10, 10, 1)
     ),
     url("https://miro.medium.com/max/5000/1*HyemvyVt7JI25k-_cTKMcg.png");
   --background-background: linear-gradient(
-      0deg,
+      45deg,
       rgba(10, 10, 10, 1),
       rgba(10, 10, 10, 0.6)
     ),
@@ -587,13 +588,14 @@ body {
 @media (max-width: 800px) {
   :root {
     --background-image: linear-gradient(
-        0deg,
+        45deg,
         rgba(10, 10, 10, 1),
         rgba(10, 10, 10, 0)
       ),
       url("https://miro.medium.com/max/5000/1*HyemvyVt7JI25k-_cTKMcg.png") !important;
   }
 }
+
 
 .night {
   position: relative;
