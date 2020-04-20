@@ -84,6 +84,10 @@ body {
   padding-left: 33vw;
 }
 
+#singleline{
+  text-align: center;
+}
+
 #display h1 {
   font-size: 50px;
   color: var(--text-color);
@@ -476,6 +480,11 @@ body {
     margin: 0 auto;
   }
 
+  #singleline {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
   .projects {
     margin-left: 0;
     /* remove neg margin to align w/ header */
