@@ -4,7 +4,7 @@
 body {
   margin: 0%;
   padding: 0%;
-  width: 100vw;
+  width: auto;
   /* background: var(--bg-color); */
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   color: var(--text-color);
@@ -444,7 +444,7 @@ body {
 
 @media (max-width: 800px) {
   #profile {
-    width: 100vw;
+    width: auto;
     padding: 15vh;
     height: 35vh;
     text-align: center;
@@ -454,8 +454,8 @@ body {
 
   #display {
     display: inline-block;
-    width: 100vw;
-    padding: 15vw;
+    width: auto;
+    padding: 5%;
     margin: 0 auto;
     position: relative;
   }
@@ -471,7 +471,7 @@ body {
   }
 
   #work {
-    width: 100vw;
+    width: auto;
     margin: 0 auto;
   }
 
