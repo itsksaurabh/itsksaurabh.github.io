@@ -4,11 +4,11 @@
 body {
   margin: 0%;
   padding: 0%;
-  width: 100%;
+  width: 100vw;
   /* background: var(--bg-color); */
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   color: var(--text-color);
-  max-width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
   align-items: center;
   font-family: "Poppins", sans-serif;
@@ -444,9 +444,9 @@ body {
 
 @media (max-width: 800px) {
   #profile {
-    width: 90vw;
-    padding: 15vh 5vw;
-    height: 60vh;
+    width: 100vw;
+    padding: 15vh;
+    height: 35vh;
     text-align: center;
     position: relative;
     background: var(--background-image) left 60% center;
