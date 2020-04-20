@@ -445,7 +445,7 @@ body {
 @media (max-width: 800px) {
   #profile {
     width: auto;
-    padding: 15vh;
+    padding: 10%;
     height: 35vh;
     text-align: center;
     position: relative;
