@@ -447,6 +447,7 @@ body {
     width: auto;
     padding: 10%;
     height: 35vh;
+    margin: 0 auto;
     text-align: center;
     position: relative;
     background: var(--background-image) left 60% center;
