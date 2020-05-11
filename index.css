@@ -192,8 +192,11 @@ body {
 #blog img {
   width: 100%;
   margin: 2vh 0px;
-  border-radius: 5px;
-  border: 1px solid rgb(0, 0, 0, 0.08);
+  border-color: #3498db;
+  border-radius: 10px;
+  outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 20px #9ecaed;
 }
 
 #header {
