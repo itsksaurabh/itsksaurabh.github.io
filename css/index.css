@@ -245,10 +245,13 @@ body {
   min-height: 180px;
   max-width: 180px;
   max-height: 180px;
-  border-radius: 100px;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
   background-size: cover !important;
   background-repeat: no-repeat !important;
+  border-color: #3498db;
+  outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 20px #9ecaed;
 }
 
 #profile div {
