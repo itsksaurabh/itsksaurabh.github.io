@@ -990,3 +990,24 @@ body {
   transition: all 150ms ease-in-out;
 }
 
+.videowrapper {
+  float: none;
+  clear: both;
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+}
+.videowrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-color: #3498db;
+  border-radius: 10px;
+  outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 20px #9ecaed;
+}
