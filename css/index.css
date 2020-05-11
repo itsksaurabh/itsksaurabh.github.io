@@ -571,13 +571,13 @@ body {
       rgba(10, 10, 10, 0.3),
       rgb(10, 10, 10, 1)
     ),
-    url("assets/bg.png");
+    url("./../assets/bg.png");
   --background-background: linear-gradient(
       45deg,
       rgba(10, 10, 10, 1),
       rgba(10, 10, 10, 0.6)
     ),
-    url("assets/bg.png") center center fixed;
+    url("./../assets/bg.png") center center fixed;
   --height: 50vh;
 }
 
@@ -608,7 +608,7 @@ body {
         rgba(10, 10, 10, 1),
         rgba(10, 10, 10, 0)
       ),
-      url("assets/bg.png") !important;
+      url("./../assets/bg.png") !important;
   }
 }
 
