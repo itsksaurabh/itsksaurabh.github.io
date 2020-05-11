@@ -9,7 +9,7 @@
  {
     "url_title": "GoWazirX",
     "title": "Go-WazirX",
-    "sub_title": "go-wazirx is a Go client library for accessing the Public API of India's biggest cryptocurrency exchange WazirX.com.",
+    "sub_title": "A Go client library for accessing the Public API of India's biggest cryptocurrency exchange WazirX.com.",
     "top_image": "top_image.png",
     "visible": true
    },
@@ -24,6 +24,20 @@
     "url_title": "KubeAct",
     "title": "KubeAct",
     "sub_title": "A Helm chart for hosting your own runner on Kubernetes to run jobs in your GitHub Actions workflows. ☸️ 🚀",
+    "top_image": "top_image.jpg",
+    "visible": true
+   },
+   {
+    "url_title": "IdeaGround",
+    "title": "Idea Ground",
+    "sub_title": "A Web application for sharing and managing projects and their deadlines. This application is an easy way of organizing various projects, and the snappiest way to equalize your work.",
+    "top_image": "top_image.png",
+    "visible": true
+   },
+   {
+    "url_title": "Dequinox",
+    "title": "D'Equinox 2016",
+    "sub_title": "Official Website for the Annual Cultural fest of Jaypee University Of engineering & Technology.",
     "top_image": "top_image.jpg",
     "visible": true
    }
