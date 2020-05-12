@@ -7,10 +7,17 @@
   "visible": true
  },
  {
-    "url_title": "GoWazirX",
-    "title": "Go-WazirX",
-    "sub_title": "A Go client library for accessing the Public API of India's biggest cryptocurrency exchange WazirX.com.",
-    "top_image": "top_image.png",
+    "url_title": "KubeAct",
+    "title": "KubeAct",
+    "sub_title": "A Helm chart for hosting your own runner on Kubernetes to run jobs in your GitHub Actions workflows. ☸️ 🚀",
+    "top_image": "top_image.jpg",
+    "visible": true
+   },
+   {
+    "url_title": "Dequinox",
+    "title": "D'Equinox 2016",
+    "sub_title": "Official Website for the Annual Cultural fest of Jaypee University Of engineering & Technology.",
+    "top_image": "top_image.jpg",
     "visible": true
    },
    {
@@ -20,11 +27,11 @@
     "top_image": "top_image.jpg",
     "visible": true
    },
-   {
-    "url_title": "KubeAct",
-    "title": "KubeAct",
-    "sub_title": "A Helm chart for hosting your own runner on Kubernetes to run jobs in your GitHub Actions workflows. ☸️ 🚀",
-    "top_image": "top_image.jpg",
+ {
+    "url_title": "GoWazirX",
+    "title": "Go-WazirX",
+    "sub_title": "A Go client library for accessing the Public API of India's biggest cryptocurrency exchange WazirX.com.",
+    "top_image": "top_image.png",
     "visible": true
    },
    {
@@ -40,12 +47,5 @@
     "sub_title": "A web Application that fetches Bank details by searching IFSC Code using Razorpay API.",
     "top_image": "top_image.png",
     "visible": true
-   },
-   {
-    "url_title": "Dequinox",
-    "title": "D'Equinox 2016",
-    "sub_title": "Official Website for the Annual Cultural fest of Jaypee University Of engineering & Technology.",
-    "top_image": "top_image.jpg",
-    "visible": true
-   }
+   }  
 ]
