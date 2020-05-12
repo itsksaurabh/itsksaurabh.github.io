@@ -409,7 +409,7 @@ body {
 }
 
 #blogs section {
-  width: 100%;
+  width: 90%;
   display: inline-block;
   border-radius: 5px;
   color: var(--text-color);
