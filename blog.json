@@ -35,6 +35,13 @@
     "visible": true
    },
    {
+    "url_title": "IFSC",
+    "title": "IFSC Search",
+    "sub_title": "A web Application that fetches Bank details by searching IFSC Code using Razorpay API.",
+    "top_image": "top_image.png",
+    "visible": true
+   },
+   {
     "url_title": "Dequinox",
     "title": "D'Equinox 2016",
     "sub_title": "Official Website for the Annual Cultural fest of Jaypee University Of engineering & Technology.",
