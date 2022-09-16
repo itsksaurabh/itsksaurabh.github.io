@@ -68,6 +68,11 @@ body {
   animation-duration: 4s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+  border-color: #3498db;
+  border-radius: 10px;
+  outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 20px #9ecaed;
 }
 
 @keyframes floating {
@@ -463,6 +468,11 @@ body {
     text-align: center;
     position: relative;
     background: var(--background-image) left 60% center;
+    border-color: #3498db;
+  border-radius: 10px;
+  outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 20px #9ecaed;
   }
 
   #display {

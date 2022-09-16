@@ -1,5 +1,12 @@
 [
   {
+    "url_title": "Ketch",
+    "title": "Ketch - CNCF Landscape Project ☸️ 🚀",
+    "sub_title": "Kubernetes Application Delivery Framework",
+    "top_image": "top_image.jpg",
+    "visible": true
+   },
+  {
     "url_title": "DoAct",
     "title": "DoAct",
     "sub_title": "A Terraform module for hosting your own runner for CI/CD on Digital Ocean to run jobs in your GitHub Actions workflows. 🚀",
