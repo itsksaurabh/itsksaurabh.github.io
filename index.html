@@ -1426,7 +1426,7 @@
         .testimonials {
             position: relative;
             height: calc(100vh - 200px);
-            overflow: hidden;
+            overflow: visible;
             background: rgba(0, 0, 0, 0.2);
         }
 
@@ -1437,36 +1437,89 @@
             object-fit: contain;
             cursor: pointer;
             filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.3));
-            transition: all 0.3s ease;
+            transition: 
+                filter 0.5s cubic-bezier(0.4,0,0.2,1),
+                transform 0.6s cubic-bezier(0.4,0,0.2,1),
+                box-shadow 0.5s cubic-bezier(0.4,0,0.2,1);
+            border-radius: 24px;
+            background: rgba(0,0,0,0.05);
         }
 
         .floating-img:hover {
-            filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.8));
-            transform: scale(1.2) !important;
+            filter: drop-shadow(0 0 28px rgba(0, 180, 255, 0.8));
+            transform: scale(1.18) !important;
             z-index: 100;
+            box-shadow: 0 0 0 8px rgba(0,180,255,0.08);
         }
 
         .floating-img.zoomed {
             position: fixed;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.5) !important;
-            max-width: 90vw;
-            max-height: 90vh;
-            z-index: 1000;
+            left: 40%;
+            transform: translate(-50%, -50%) scale(1.3) !important;
+            width: 600px;
+            max-width: 80vw;
+            max-height: 80vh;
+            z-index: 9999;
             cursor: zoom-out;
-            filter: drop-shadow(0 0 30px rgba(0, 180, 255, 0.9));
+            filter: drop-shadow(0 0 40px rgba(0, 180, 255, 0.9));
+            border-radius: 32px;
+            transition: all 0.7s cubic-bezier(0.4,0,0.2,1);
+            margin: 0;
+            padding: 0;
+            right: auto;
+            bottom: auto;
+            object-fit: contain;
         }
 
         .floating-img.zoomed:hover {
-            transform: translate(-50%, -50%) scale(1.5) !important;
+            transform: translate(-50%, -50%) scale(1.3) !important;
         }
 
         @media (max-width: 768px) {
-            .floating-img {
-                max-width: 300px;
-                max-height: 300px;
+            .floating-img.zoomed {
+                width: 90vw;
             }
+        }
+
+        /* Ensure testimonials container doesn't affect zoomed image positioning */
+        .testimonials {
+            position: relative;
+            height: calc(100vh - 200px);
+            overflow: visible;
+            background: rgba(0, 0, 0, 0.2);
+            transform: none;
+            z-index: 1;
+        }
+
+        /* Add overlay for zoomed state */
+        .testimonials::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        .testimonials.has-zoomed::before {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* Ensure body doesn't scroll when image is zoomed */
+        body.has-zoomed {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
         }
 
         .float-1 { top: 10%; left: 5%; animation: float1 15s infinite ease-in-out; }
@@ -1481,65 +1534,74 @@
 
         @keyframes float1 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, -15px) rotate(2deg); }
-            50% { transform: translate(-15px, 10px) rotate(-2deg); }
-            75% { transform: translate(10px, 15px) rotate(1deg); }
+            20% { transform: translate(10px, -8px) rotate(0.3deg); }
+            40% { transform: translate(-8px, 7px) rotate(-0.5deg); }
+            60% { transform: translate(7px, 10px) rotate(0.4deg); }
+            80% { transform: translate(-6px, -9px) rotate(-0.3deg); }
         }
 
         @keyframes float2 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-20px, 15px) rotate(-2deg); }
-            50% { transform: translate(15px, -10px) rotate(2deg); }
-            75% { transform: translate(-10px, -15px) rotate(-1deg); }
+            20% { transform: translate(-10px, 8px) rotate(-0.3deg); }
+            40% { transform: translate(8px, -7px) rotate(0.5deg); }
+            60% { transform: translate(-7px, -10px) rotate(-0.4deg); }
+            80% { transform: translate(6px, 9px) rotate(0.3deg); }
         }
 
         @keyframes float3 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(15px, 20px) rotate(1deg); }
-            50% { transform: translate(-20px, -15px) rotate(-1deg); }
-            75% { transform: translate(15px, -20px) rotate(2deg); }
+            20% { transform: translate(8px, 10px) rotate(0.2deg); }
+            40% { transform: translate(-10px, -8px) rotate(-0.4deg); }
+            60% { transform: translate(9px, -7px) rotate(0.3deg); }
+            80% { transform: translate(-7px, 8px) rotate(-0.2deg); }
         }
 
         @keyframes float4 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-15px, -20px) rotate(-1deg); }
-            50% { transform: translate(20px, 15px) rotate(1deg); }
-            75% { transform: translate(-15px, 20px) rotate(-2deg); }
+            20% { transform: translate(-8px, -10px) rotate(-0.2deg); }
+            40% { transform: translate(10px, 8px) rotate(0.4deg); }
+            60% { transform: translate(-9px, 7px) rotate(-0.3deg); }
+            80% { transform: translate(7px, -8px) rotate(0.2deg); }
         }
 
         @keyframes float5 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, 15px) rotate(2deg); }
-            50% { transform: translate(-15px, -20px) rotate(-2deg); }
-            75% { transform: translate(10px, -15px) rotate(1deg); }
+            20% { transform: translate(10px, 8px) rotate(0.3deg); }
+            40% { transform: translate(-8px, -10px) rotate(-0.5deg); }
+            60% { transform: translate(7px, -9px) rotate(0.4deg); }
+            80% { transform: translate(-6px, 9px) rotate(-0.3deg); }
         }
 
         @keyframes float6 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-20px, -15px) rotate(-2deg); }
-            50% { transform: translate(15px, 20px) rotate(2deg); }
-            75% { transform: translate(-10px, 15px) rotate(-1deg); }
+            20% { transform: translate(-10px, -8px) rotate(-0.3deg); }
+            40% { transform: translate(8px, 10px) rotate(0.5deg); }
+            60% { transform: translate(-7px, 9px) rotate(-0.4deg); }
+            80% { transform: translate(6px, -9px) rotate(0.3deg); }
         }
 
         @keyframes float7 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(15px, -20px) rotate(1deg); }
-            50% { transform: translate(-20px, 15px) rotate(-1deg); }
-            75% { transform: translate(15px, 20px) rotate(2deg); }
+            20% { transform: translate(8px, -10px) rotate(0.2deg); }
+            40% { transform: translate(-10px, 8px) rotate(-0.4deg); }
+            60% { transform: translate(9px, 7px) rotate(0.3deg); }
+            80% { transform: translate(-7px, -8px) rotate(-0.2deg); }
         }
 
         @keyframes float8 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(-15px, 20px) rotate(-1deg); }
-            50% { transform: translate(20px, -15px) rotate(1deg); }
-            75% { transform: translate(-15px, -20px) rotate(-2deg); }
+            20% { transform: translate(-8px, 10px) rotate(-0.2deg); }
+            40% { transform: translate(10px, -8px) rotate(0.4deg); }
+            60% { transform: translate(-9px, -7px) rotate(-0.3deg); }
+            80% { transform: translate(7px, 8px) rotate(0.2deg); }
         }
 
         @keyframes float9 {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, -15px) rotate(2deg); }
-            50% { transform: translate(-15px, 20px) rotate(-2deg); }
-            75% { transform: translate(10px, 15px) rotate(1deg); }
+            20% { transform: translate(10px, -8px) rotate(0.3deg); }
+            40% { transform: translate(-8px, 10px) rotate(-0.5deg); }
+            60% { transform: translate(7px, 9px) rotate(0.4deg); }
+            80% { transform: translate(-6px, -9px) rotate(-0.3deg); }
         }
 
         @media (max-width: 768px) {
@@ -1547,6 +1609,132 @@
                 max-width: 300px;
                 max-height: 300px;
             }
+        }
+
+        /* Add these new floating positions */
+        .float-10 { top: 30%; left: 85%; animation: float10 19s infinite ease-in-out; }
+        .float-11 { top: 40%; left: 5%; animation: float11 17s infinite ease-in-out; }
+        .float-12 { top: 70%; left: 25%; animation: float12 20s infinite ease-in-out; }
+        .float-13 { top: 85%; left: 65%; animation: float13 18s infinite ease-in-out; }
+        .float-14 { top: 15%; left: 35%; animation: float14 21s infinite ease-in-out; }
+        .float-15 { top: 45%; left: 85%; animation: float15 16s infinite ease-in-out; }
+
+        @keyframes float10 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(-8px, 10px) rotate(-0.2deg); }
+            40% { transform: translate(10px, -8px) rotate(0.4deg); }
+            60% { transform: translate(-9px, -7px) rotate(-0.3deg); }
+            80% { transform: translate(7px, 8px) rotate(0.2deg); }
+        }
+
+        @keyframes float11 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(10px, -8px) rotate(0.3deg); }
+            40% { transform: translate(-8px, 10px) rotate(-0.5deg); }
+            60% { transform: translate(7px, 9px) rotate(0.4deg); }
+            80% { transform: translate(-6px, -9px) rotate(-0.3deg); }
+        }
+
+        @keyframes float12 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(-10px, 8px) rotate(-0.3deg); }
+            40% { transform: translate(8px, -10px) rotate(0.5deg); }
+            60% { transform: translate(-7px, -9px) rotate(-0.4deg); }
+            80% { transform: translate(6px, 9px) rotate(0.3deg); }
+        }
+
+        @keyframes float13 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(8px, -10px) rotate(0.2deg); }
+            40% { transform: translate(-10px, 8px) rotate(-0.4deg); }
+            60% { transform: translate(9px, 7px) rotate(0.3deg); }
+            80% { transform: translate(-7px, -8px) rotate(-0.2deg); }
+        }
+
+        @keyframes float14 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(-8px, 10px) rotate(-0.2deg); }
+            40% { transform: translate(10px, -8px) rotate(0.4deg); }
+            60% { transform: translate(-9px, -7px) rotate(-0.3deg); }
+            80% { transform: translate(7px, 8px) rotate(0.2deg); }
+        }
+
+        @keyframes float15 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(10px, -8px) rotate(0.3deg); }
+            40% { transform: translate(-8px, 10px) rotate(-0.5deg); }
+            60% { transform: translate(7px, 9px) rotate(0.4deg); }
+            80% { transform: translate(-6px, -9px) rotate(-0.3deg); }
+        }
+
+        .floating-img.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 40%;
+            transform: translate(-50%, -50%) scale(1.3) !important;
+            width: 600px;
+            max-width: 80vw;
+            max-height: 80vh;
+            z-index: 9999;
+            cursor: zoom-out;
+            filter: drop-shadow(0 0 40px rgba(0, 180, 255, 0.9));
+            border-radius: 32px;
+            transition: all 0.7s cubic-bezier(0.4,0,0.2,1);
+            margin: 0;
+            padding: 0;
+            right: auto;
+            bottom: auto;
+            object-fit: contain;
+        }
+
+        .floating-img.zoomed:hover {
+            transform: translate(-50%, -50%) scale(1.3) !important;
+        }
+
+        @media (max-width: 768px) {
+            .floating-img.zoomed {
+                width: 90vw;
+            }
+        }
+
+        /* Ensure testimonials container doesn't affect zoomed image positioning */
+        .testimonials {
+            position: relative;
+            height: calc(100vh - 200px);
+            overflow: visible;
+            background: rgba(0, 0, 0, 0.2);
+            transform: none;
+            z-index: 1;
+        }
+
+        /* Add overlay for zoomed state */
+        .testimonials::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        .testimonials.has-zoomed::before {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* Ensure body doesn't scroll when image is zoomed */
+        body.has-zoomed {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
         }
     </style>
     <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png">
@@ -1574,8 +1762,8 @@
                         <a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/itsksaurabh" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://itsksaurabh.medium.com/" target="_blank"><i class="fab fa-medium"></i></a>
-            </div>
-                    </div>
+                </div>
+                </div>
                 <div class="ide-section">
                     <div class="ide-container">
                         <div class="ide-header">
@@ -1583,7 +1771,7 @@
                             <button class="ide-button minimize"></button>
                             <button class="ide-button maximize"></button>
                             <span class="ide-title">profile.go</span>
-                    </div>
+    </div>
                         <div class="ide-content">
                             <div class="code-line"><span class="code-keyword">package</span> <span class="code-function">main</span></div>
                             <div class="code-line"></div>
@@ -1769,11 +1957,11 @@
                             <div class="code-line"></div>
                             <div class="code-line">&nbsp;&nbsp;fmt.Println(<span class="code-string">"Profile loaded successfully!"</span>)</div>
                             <div class="code-line">}</div>
+            </div>
+                    </div>
+                    </div>
                         </div>
-                    </div>
-                    </div>
-                </div>
-
+                      
             <div id="testimonials" class="tab-pane">
                 <div class="testimonials">
                     <img src="assets/Testimonials/t1.png" alt="Testimonial 1" class="floating-img float-1">
@@ -1785,9 +1973,14 @@
                     <img src="assets/Testimonials/t7.png" alt="Testimonial 7" class="floating-img float-7">
                     <img src="assets/Testimonials/t8.png" alt="Testimonial 8" class="floating-img float-8">
                     <img src="assets/Testimonials/t9.png" alt="Testimonial 9" class="floating-img float-9">
+                    <img src="assets/Testimonials/10.png" alt="Testimonial 10" class="floating-img float-10">
+                    <img src="assets/Testimonials/11.png" alt="Testimonial 11" class="floating-img float-11">
+                    <img src="assets/Testimonials/12.png" alt="Testimonial 12" class="floating-img float-12">
+                    <img src="assets/Testimonials/13.png" alt="Testimonial 13" class="floating-img float-13">
+                    <img src="assets/Testimonials/14.png" alt="Testimonial 14" class="floating-img float-14">
+                    </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
     <a href="mailto:your.email@example.com" class="contact-button">
         <i class="fas fa-envelope"></i> Contact Me
@@ -2021,239 +2214,13 @@
 
         // Add this to your existing JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            const testimonials = document.querySelector('.testimonials');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            testimonials.addEventListener('mousedown', (e) => {
-                isDown = true;
-                testimonials.style.cursor = 'grabbing';
-                startX = e.pageX - testimonials.offsetLeft;
-                scrollLeft = testimonials.scrollLeft;
-            });
-
-            testimonials.addEventListener('mouseleave', () => {
-                isDown = false;
-                testimonials.style.cursor = 'grab';
-            });
-
-            testimonials.addEventListener('mouseup', () => {
-                isDown = false;
-                testimonials.style.cursor = 'grab';
-            });
-
-            testimonials.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - testimonials.offsetLeft;
-                const walk = (x - startX) * 2;
-                testimonials.scrollLeft = scrollLeft - walk;
-            });
-
-            // Add touch support
-            testimonials.addEventListener('touchstart', (e) => {
-                isDown = true;
-                startX = e.touches[0].pageX - testimonials.offsetLeft;
-                scrollLeft = testimonials.scrollLeft;
-            });
-
-            testimonials.addEventListener('touchend', () => {
-                isDown = false;
-            });
-
-            testimonials.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - testimonials.offsetLeft;
-                const walk = (x - startX) * 2;
-                testimonials.scrollLeft = scrollLeft - walk;
-            });
-
-            // Add auto-scroll on hover
-            let scrollInterval;
-            const cards = document.querySelectorAll('.testimonial-card');
-
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    clearInterval(scrollInterval);
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    startAutoScroll();
-                });
-            });
-
-            function startAutoScroll() {
-                scrollInterval = setInterval(() => {
-                    testimonials.scrollLeft += 1;
-                    if (testimonials.scrollLeft >= testimonials.scrollWidth - testimonials.clientWidth) {
-                        testimonials.scrollLeft = 0;
-                    }
-                }, 30);
-            }
-
-            startAutoScroll();
-        });
-
-        // Add this to your existing JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            const testimonials = document.querySelector('.testimonials');
-            const prevButton = document.querySelector('.nav-button.prev');
-            const nextButton = document.querySelector('.nav-button.next');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            // Navigation buttons
-            prevButton.addEventListener('click', () => {
-                testimonials.scrollBy({
-                    left: -testimonials.offsetWidth * 0.8,
-                    behavior: 'smooth'
-                });
-            });
-
-            nextButton.addEventListener('click', () => {
-                testimonials.scrollBy({
-                    left: testimonials.offsetWidth * 0.8,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Mouse events
-            testimonials.addEventListener('mousedown', (e) => {
-                isDown = true;
-                testimonials.style.cursor = 'grabbing';
-                startX = e.pageX - testimonials.offsetLeft;
-                scrollLeft = testimonials.scrollLeft;
-            });
-
-            testimonials.addEventListener('mouseleave', () => {
-                isDown = false;
-                testimonials.style.cursor = 'grab';
-            });
-
-            testimonials.addEventListener('mouseup', () => {
-                isDown = false;
-                testimonials.style.cursor = 'grab';
-            });
-
-            testimonials.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - testimonials.offsetLeft;
-                const walk = (x - startX) * 2;
-                testimonials.scrollLeft = scrollLeft - walk;
-            });
-
-            // Touch events
-            testimonials.addEventListener('touchstart', (e) => {
-                isDown = true;
-                startX = e.touches[0].pageX - testimonials.offsetLeft;
-                scrollLeft = testimonials.scrollLeft;
-            });
-
-            testimonials.addEventListener('touchend', () => {
-                isDown = false;
-            });
-
-            testimonials.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - testimonials.offsetLeft;
-                const walk = (x - startX) * 2;
-                testimonials.scrollLeft = scrollLeft - walk;
-            });
-
-            // Auto-scroll with pause
-            let scrollInterval;
-            const cards = document.querySelectorAll('.testimonial-card');
-
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    clearInterval(scrollInterval);
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    startAutoScroll();
-                });
-            });
-
-            function startAutoScroll() {
-                scrollInterval = setInterval(() => {
-                    testimonials.scrollLeft += 1;
-                    if (testimonials.scrollLeft >= testimonials.scrollWidth - testimonials.clientWidth) {
-                        testimonials.scrollLeft = 0;
-                    }
-                }, 30);
-            }
-
-            startAutoScroll();
-
-            // Add parallax effect
-            testimonials.addEventListener('mousemove', (e) => {
-                const cards = document.querySelectorAll('.testimonial-card');
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
-
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
-                    const cardX = rect.left + rect.width / 2;
-                    const cardY = rect.top + rect.height / 2;
-                    const angleX = (mouseY - cardY / window.innerHeight) * 10;
-                    const angleY = (mouseX - cardX / window.innerWidth) * -10;
-
-                    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const testimonialItems = document.querySelectorAll('.testimonial-item');
-            const grid = document.querySelector('.testimonials-grid');
-
-            testimonialItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    
-                    // Remove active class from all items
-                    testimonialItems.forEach(i => i.classList.remove('active'));
-                    
-                    // Toggle active state
-                    if (!isActive) {
-                        item.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = '';
-                    }
-                });
-            });
-
-            // Close on click outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.testimonial-item')) {
-                    testimonialItems.forEach(item => item.classList.remove('active'));
-                    document.body.style.overflow = '';
-                }
-            });
-
-            // Close on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    testimonialItems.forEach(item => item.classList.remove('active'));
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-
-        // Add this to your existing JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('.floating-img');
             const testimonials = document.querySelector('.testimonials');
+            const body = document.body;
 
             images.forEach(img => {
                 img.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent event from bubbling up
+                    e.stopPropagation();
                     const isZoomed = img.classList.contains('zoomed');
                     
                     // Remove zoomed class from all images
@@ -2262,9 +2229,11 @@
                     // Toggle zoom state
                     if (!isZoomed) {
                         img.classList.add('zoomed');
-                        testimonials.style.overflow = 'hidden';
+                        testimonials.classList.add('has-zoomed');
+                        body.classList.add('has-zoomed');
                     } else {
-                        testimonials.style.overflow = '';
+                        testimonials.classList.remove('has-zoomed');
+                        body.classList.remove('has-zoomed');
                     }
                 });
             });
@@ -2273,7 +2242,8 @@
             testimonials.addEventListener('click', (e) => {
                 if (e.target === testimonials) {
                     images.forEach(img => img.classList.remove('zoomed'));
-                    testimonials.style.overflow = '';
+                    testimonials.classList.remove('has-zoomed');
+                    body.classList.remove('has-zoomed');
                 }
             });
 
@@ -2281,11 +2251,11 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     images.forEach(img => img.classList.remove('zoomed'));
-                    testimonials.style.overflow = '';
+                    testimonials.classList.remove('has-zoomed');
+                    body.classList.remove('has-zoomed');
                 }
             });
         });
     </script>
 </body>
 </html>
-
