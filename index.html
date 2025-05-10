@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,172 +18,1336 @@
     <script src="https://unpkg.com/magic-grid/dist/magic-grid.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
-  <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png"></head>
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --accent-primary: #00b4ff;
+            --accent-secondary: #0066ff;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --card-bg: rgba(20, 20, 20, 0.8);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --page-height: 100vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            height: var(--page-height);
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--bg-primary), var(--bg-secondary));
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: rotate 20s linear infinite;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ff88' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .container {
+            height: var(--page-height);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-button:hover::after {
+            width: 100%;
+        }
+
+        .tab-button.active {
+            color: var(--accent-primary);
+        }
+
+        .tab-button.active::after {
+            width: 100%;
+        }
+
+        /* Tab Content Styles */
+        .tab-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            margin-top: 4rem;
+            height: calc(100vh - 4rem);
+        }
+
+        .tab-pane {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(50px);
+            transition: all 0.5s ease;
+            padding: 1rem;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .tab-pane.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        /* Experience Tab Styles */
+        #experience {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        /* About Tab Styles */
+        #about {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        /* Testimonials Tab Styles */
+        #testimonials {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        /* Split Layout for Home Tab */
+        #home {
+            display: flex;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .profile-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .ide-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Updated IDE Container */
+        .ide-container {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            height: 80vh;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0.5rem auto;
+            box-shadow: 0 0 20px rgba(0, 180, 255, 0.15);
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ide-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ide-button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .ide-button.close { background: #ff5f56; }
+        .ide-button.minimize { background: #ffbd2e; }
+        .ide-button.maximize { background: #27c93f; }
+
+        .ide-title {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-left: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .ide-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.2rem;
+            font-family: 'Fira Code', monospace;
+            line-height: 0.9;
+            color: var(--text-primary);
+            position: relative;
+            font-size: 0.8rem;
+            white-space: pre;
+        }
+
+        .code-line {
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            white-space: pre;
+            font-family: 'Fira Code', monospace;
+            padding-left: 0.5rem;
+            font-size: 0.8rem;
+            line-height: 0.9;
+            height: 0.9em;
+            display: block;
+            margin-bottom: -0.1em;
+        }
+
+        .description-block {
+            margin: 0;
+            padding: 0;
+            line-height: 0.9;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: -0.1em;
+        }
+
+        .typewriter-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: pre-wrap;
+            border-right: 1px solid var(--accent-primary);
+            animation: blink 0.7s infinite;
+            width: 0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .typewriter-text.typing {
+            animation: typing 2.5s steps(100, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--accent-primary); }
+        }
+
+        /* Updated Profile Section */
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-primary);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.8rem;
+            border-radius: 50%;
+            background: var(--card-bg);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .section:hover::before {
+            transform: translateX(100%);
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent-primary);
+            position: relative;
+            display: inline-block;
+            animation: slideIn 1s ease-out;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            animation: widthGrow 1s ease-out;
+        }
+
+        @keyframes widthGrow {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .experience-item {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .company-logo {
+            max-width: 200px;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .company-logo:hover {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .role {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .period {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonials {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .testimonials::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 500px;
+            scroll-snap-align: start;
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-card img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .contact-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .contact-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+            font-size: 1.2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(0, 255, 136, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .achievements li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        .experience-item {
+            animation: fadeInUp 1s ease-out;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-item p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-tags {
+                gap: 0.5rem;
+            }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        /* Enhanced Timeline Effect */
+        .experience-section {
+            position: relative;
+            padding: 6rem 0;
+            background: linear-gradient(180deg, 
+                rgba(0, 180, 255, 0.05) 0%,
+                rgba(0, 0, 0, 0) 100%
+            );
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Main Timeline Line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                var(--accent-primary) 20%,
+                var(--accent-secondary) 80%,
+                transparent 100%
+            );
+            box-shadow: 
+                0 0 20px var(--accent-primary),
+                0 0 40px var(--accent-primary);
+            animation: timelinePulse 3s infinite;
+        }
+
+        /* Timeline Dots */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at center,
+                var(--accent-primary) 0%,
+                transparent 70%
+            );
+            opacity: 0.1;
+            animation: timelineGlow 3s infinite;
+        }
+
+        @keyframes timelinePulse {
+            0% { box-shadow: 0 0 20px var(--accent-primary); }
+            50% { box-shadow: 0 0 40px var(--accent-primary), 0 0 60px var(--accent-secondary); }
+            100% { box-shadow: 0 0 20px var(--accent-primary); }
+        }
+
+        @keyframes timelineGlow {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.1; }
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .experience-item:nth-child(even) {
+            transform: translateX(100px);
+        }
+
+        .experience-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Timeline Dot for each experience */
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 
+                0 0 20px var(--accent-primary),
+                0 0 40px var(--accent-primary);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .experience-item.visible::before {
+            opacity: 1;
+            animation: dotPulse 2s infinite;
+        }
+
+        @keyframes dotPulse {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px var(--accent-primary); }
+            50% { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 0 40px var(--accent-primary), 0 0 60px var(--accent-secondary); }
+            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px var(--accent-primary); }
+        }
+
+        /* Connecting Lines */
+        .experience-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent,
+                var(--accent-primary),
+                var(--accent-secondary),
+                transparent
+            );
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .experience-item.visible::after {
+            opacity: 0.5;
+            animation: lineExtend 1s forwards;
+        }
+
+        @keyframes lineExtend {
+            0% { width: 0; }
+            100% { width: 100px; }
+        }
+
+        .experience-content {
+            position: relative;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 180, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            transform-origin: center;
+        }
+
+        .experience-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                transparent,
+                rgba(0, 180, 255, 0.1),
+                transparent
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .experience-content:hover::before {
+            transform: translateX(100%);
+        }
+
+        .experience-content:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(0, 180, 255, 0.2);
+            border-color: rgba(0, 180, 255, 0.3);
+        }
+
+        .company-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: grayscale(100%) brightness(0.8);
+            border: 2px solid transparent;
+        }
+
+        .company-logo:hover {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 30px rgba(0, 180, 255, 0.3);
+        }
+
+        .role {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .role::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .experience-content:hover .role::after {
+            transform: scaleX(1);
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .achievements li {
+            position: relative;
+            padding: 1rem 0 1rem 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            border-left: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .achievements li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            transition: all 0.3s ease;
+        }
+
+        .achievements li:hover {
+            border-left-color: var(--accent-primary);
+            transform: translateX(10px);
+            background: rgba(0, 180, 255, 0.05);
+            padding-left: 2.5rem;
+        }
+
+        .achievements li:hover::before {
+            transform: translateX(5px);
+            color: var(--accent-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .experience-item {
+                transform: translateY(50px);
+            }
+
+            .experience-item:nth-child(even) {
+                transform: translateY(50px);
+            }
+
+            .experience-content {
+                padding: 1.5rem;
+            }
+
+            .role {
+                font-size: 2rem;
+            }
+
+            .company-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        .code-keyword { color: #ff79c6; }
+        .code-function { color: #8be9fd; }
+        .code-string { color: #f1fa8c; }
+        .code-comment { color: #6272a4; }
+        .code-type { color: #bd93f9; }
+        .code-number { color: #bd93f9; }
+        .code-operator { color: #ff79c6; }
+
+        .code-line {
+            margin: 0.2rem 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            white-space: pre;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .code-line.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png">
+</head>
 
   <body>
+    <div class="animated-bg"></div>
     <div id="loading">
       <div id="spinner"></div>
     </div>
-    <div id="profile">
-      <div id="profile_img" style="background: url(https://avatars2.githubusercontent.com/u/14794708?v=4) center;"></div>
-      <div id="userbio" style="display: block;">Hey, I am Saurabh! 👋</div>
-      <p id="singleline"> I mostly work on design and engineering! ☁️🚀 </p>
-      <div id="about">
-                <span style="display:none;"><i class="fas fa-users"></i> &nbsp; null</span>
-                <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
-                <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; India</span>
-                <span style="display:block;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; Available for hire</span>
-                <!-- <span style="display:block;"><i class="fas fa-link"></i> &nbsp; <a href="https://itsksaurabh.github.io/">https://itsksaurabh.github.io/</a></span> -->
-                <div class="socials">
-                <span style="display:block;">
-                        <a href="https://github.com/itsksaurabh" target="_blank" class="socials">
-                            <svg height="15" class="octicon octicon-mark-github mr-1 v-align-middle" fill="#ffffff" aria-label="GitHub" viewBox="0 0 16 16" version="1.1" width="20" role="img"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                        </a> 
-                </span>
-                <span style="display:block;"><a href="https://www.twitter.com/itsksaurabh" target="_blank" class="socials"><i class="fab fa-twitter"></i></a></span>
-                <span style="display:block;"><a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank" class="socials"><i class="fab fa-linkedin-in"></i></a></span>
-                <span style="display:block;"><a href="https://itsksaurabh.medium.com/" target="_blank" class="socials"><i class="fab fa-medium-m"></i></a></span>
-                <span style="display:block;">
-                    <a href="mailto: itsksaurabh@gmail.com" target="_blank" class="socials" aria-label="Email: itsksaurabh@gmail.com">
-                    <svg height="15" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9434 1.52996L16.9243 15.7574C16.7018 16.7662 16.1009 17.011 15.2627 16.5362L10.6637 13.1463L8.44574 15.2826C8.20095 15.5274 7.99325 15.7351 7.51851 15.7351L7.84489 11.0545L16.368 3.35475C16.7389 3.02836 16.2864 2.84292 15.7968 3.1693L5.26349 9.80084L0.723777 8.38403C-0.262794 8.07249 -0.285048 7.39746 0.931477 6.92272L18.6675 0.0834836C19.4909 -0.21323 20.2104 0.283765 19.9434 1.52996Z" fill="#ffffff"/></svg>
-                    </a>             
-                </span>
-                </div>
-                </div>
-    </div>
-    <div id="display">
-      <div id="work">
-          
-            <div class="night">
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
-            </div>
-          <h1>Kumar Saurabh&nbsp;<img style="max-width:100px;" src="assets/go.png" alt="Golanglogo"></h1>
-          <h2>About.</h2>
-          <p>
-            I am a passionate and creative Software Engineer from India with a strong interest in Golang and Cloud-Native technologies. 
-            I am an Open-source contributor <b style="color:powderblue;">𝗚𝗼𝗼𝗴𝗹𝗲, 𝗚𝗶𝘁𝗵𝘂𝗯, 𝗗𝗶𝗴𝗶𝘁𝗮𝗹𝗢𝗰𝗲𝗮𝗻, 𝗧𝘄𝗶𝗹𝗶𝗼 𝗜𝗻𝗰.‘𝘀 𝗦𝗲𝗻𝗱𝗚𝗿𝗶𝗱, 𝗢𝗽𝗲𝗻𝗙𝗮𝗮𝘀, 𝗛𝗲𝗹𝗹𝗼𝗳𝗿𝗲𝘀𝗵,</b> etc. I am also a startup enthusiast and have multiple years of experience in building tech startups from scratch. 
-            Along with my full-time job, I also worked on various projects as a Go and DevOps Engineer ( Consultant ) for multiple international clients.
-            <br>
-            <br>
-            I mostly work on Backend development with <b style="color:powderblue;">Golang ( Go )</b> and Cloud-Native technologies. 
-            I build robust, secure, and scalable infrastructures using Cloud-native technologies such as <b style="color:powderblue;">Golang, Kubernetes, Docker, SAAS, Terraform, Helm, GRPC, CI/CD, GCP, DigitalOcean, MongoDB, PostgreSQL </b> and proficient with metric collection & monitoring tools such as <b style="color:powderblue;">Prometheus, Grafana, Telegraf, Influxdb,</b> etc.
-            I also work closely building and managing <b style="color:powderblue;">𝗞𝘂𝗯𝗲𝗿𝗻𝗲𝘁𝗲𝘀 𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿𝘀</b> with Frameworks like <b style="color:powderblue;">𝗢𝗽𝗲𝗿𝗮𝘁𝗼𝗿-𝗦𝗗𝗞 </b>and <b style="color:powderblue;">𝗞𝘂𝗯𝗲𝗯𝘂𝗶𝗹𝗱𝗲𝗿 </b>using Go.
-            
-            <br>
-            <br>
-            I am Fully-committed to designing and developing innovative materials. I am highly self-motivated, enthusiastic and always willing to learn more.
+    <div class="container">
+        <nav class="tab-nav">
+            <button class="tab-button" data-target="#home">Home</button>
+            <button class="tab-button" data-target="#experience">Experience</button>
+            <button class="tab-button" data-target="#about">About</button>
+            <button class="tab-button" data-target="#testimonials">Testimonials</button>
+        </nav>
 
-            <br>
-            <br>
-                <div>
-                  <h1>Experience.</h1>
-                  <div>
-                  <a href="https://www.shipa.io" target="_blank">
-                  <img style="max-width:300px;" src="assets/shipa.svg" alt="ShipaLogo">
-                  </a>
-                  <h2>Senior Software Engineer</h2> 
-                  <h3>August 2020 - Present</h3>
-                  <p>Building a world-class cloud platform for Cloud-Native Applications and reinventing how cloud-native applications are delivered across heterogeneous clusters and cloud environments.</p> 
-                    <ul style="display: table;margin: 10 auto;padding: 10px;list-style-type:circle;">
-                      <li>Designing and developing features and enhancements with Go ( Golang ) and Cloud-Native technologies for our products.</li>
-                      <li>Working closely with building and managing Kubernetes Operators with Frameworks like Operator-SDK and Kubebuilder using Go.</li>
-                      <li>Building the platform with the knowledge of Kubernetes (container management solutions), CRDs, Operators, Docker, containers, CICD, public cloud platforms (AWS, Google Cloud Platform, etc).</li>
-                      <li>Collaborating with users, customers, and our product management team to enhance existing products.</li>
-                      <li>Working closely with teammates in design, code, and test-plan reviews to help build robust software and faster knowledge sharing.</li>
+        <div class="tab-content">
+            <div id="home" class="tab-pane">
+                <div class="profile-section">
+                    <img src="https://avatars2.githubusercontent.com/u/14794708?v=4" alt="Kumar Saurabh" class="profile-image">
+                    <h1 class="name">Kumar Saurabh</h1>
+                    <p class="title">Engineering Leader | DevOps Engineer | Cloud Architect | Backend Golang Developer</p>
+                    <div class="social-links">
+                        <a href="https://github.com/itsksaurabh" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/itsksaurabh" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://itsksaurabh.medium.com/" target="_blank"><i class="fab fa-medium"></i></a>
+                </div>
+                </div>
+                <div class="ide-section">
+                    <div class="ide-container">
+                        <div class="ide-header">
+                            <button class="ide-button close"></button>
+                            <button class="ide-button minimize"></button>
+                            <button class="ide-button maximize"></button>
+                            <span class="ide-title">profile.go</span>
+    </div>
+                        <div class="ide-content">
+                            <div class="code-line"><span class="code-keyword">package</span> <span class="code-function">main</span></div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="code-keyword">import</span> (</div>
+                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">"fmt"</span></div>
+                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">"time"</span></div>
+                            <div class="code-line">)</div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="code-keyword">type</span> <span class="code-function">Profile</span> <span class="code-keyword">struct</span> {</div>
+                            <div class="code-line">&nbsp;&nbsp;Name        <span class="code-type">string</span>    <span class="code-comment">`json:"name"`</span></div>
+                            <div class="code-line">&nbsp;&nbsp;Role        <span class="code-type">string</span>    <span class="code-comment">`json:"role"`</span></div>
+                            <div class="code-line">&nbsp;&nbsp;Experience  <span class="code-type">int</span>       <span class="code-comment">`json:"experience"`</span></div>
+                            <div class="code-line">&nbsp;&nbsp;Expertise   []<span class="code-type">string</span>  <span class="code-comment">`json:"expertise"`</span></div>
+                            <div class="code-line">&nbsp;&nbsp;Skills      <span class="code-type">map</span>[<span class="code-type">string</span>][]<span class="code-type">string</span> <span class="code-comment">`json:"skills"`</span></div>
+                            <div class="code-line">}</div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="code-keyword">func</span> <span class="code-function">main</span>() {</div>
+                            <div class="code-line">&nbsp;&nbsp;profile := Profile{</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;Name:       <span class="code-string">"Kumar Saurabh"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;Role:       <span class="code-string">"Engineering Leader"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;Experience: <span class="code-number">8</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;Expertise: []<span class="code-type">string</span>{</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloud Architecture"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DevOps"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Backend Development"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"System Design"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Blockchain Development"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Web3 Infrastructure"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Team Leadership"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Technical Strategy"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Performance Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;Skills: <span class="code-type">map</span>[<span class="code-type">string</span>][]<span class="code-type">string</span>{</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloud"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Amazon Web Services (AWS)"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Google Cloud Platform (GCP)"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DigitalOcean"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Infrastructure"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Kubernetes"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Docker"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ECS"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Fargate"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Terraform"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Helm"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Microservices"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Distributed Systems"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Serverless"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Lambda"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Step Functions"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS App Runner"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloud Functions"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Serverless Framework"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Databases"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"PostgreSQL"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"MySQL"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"MongoDB"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DynamoDB"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"RDS"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"TimescaleDB"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Event Processing"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Apache Kafka"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS EventBridge"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS SQS"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS SNS"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Event-Driven Architecture"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Languages"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Golang"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Python"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Shell"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DevOps"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitOps"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CI/CD"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitHub Actions"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jenkins"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Monitoring"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Prometheus"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Grafana"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ELK Stack"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Datadog"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CloudWatch"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"New Relic"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jaeger"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Observability"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Session Replay"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"LaunchDarkly"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Feature Flags"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"A/B Testing"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"User Analytics"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Security"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Security"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Vault"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"OpenSSL"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS WAF"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Shield"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS GuardDuty"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS KMS"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Secrets Manager"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Certificate Manager"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Network Security"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"IAM & RBAC"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Security Compliance"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Caching & Message Brokers"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Redis"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Memcached"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"RabbitMQ"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ActiveMQ"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Blockchain"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Ethereum"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Layer-2 Solutions"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Smart Contracts"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Solidity"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Optimization"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Performance Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cost Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Resource Efficiency"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Leadership"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Team Leadership"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Technical Strategy"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Mentoring"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Agile"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;}</div>
+                            <div class="code-line"></div>
+                            <div class="code-line">&nbsp;&nbsp;fmt.Println(<span class="code-string">"Profile loaded successfully!"</span>)</div>
+                            <div class="code-line">}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="experience" class="tab-pane">
+                <section class="experience-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Experience</h2>
+                        <div class="section-line"></div>
+            </div>
+
+                    <div class="timeline">
+                        <div class="experience-item">
+                            <div class="experience-content">
+                                <div class="experience-header">
+                                    <img src="assets/shiba.png" alt="Shiba Inu" class="company-logo">
+                                    <div class="role-info">
+                                        <h3 class="role">Engineering Lead & Cloud Architect</h3>
+                                        <p class="period">January 2024 - Present | Remote</p>
+                                    </div>
+                                </div>
+                                <div class="experience-body">
+                                    <p class="role-description">As Engineering Lead at Shiba Inu (a top 10 global cryptocurrency), I lead the development of cloud-native infrastructure and high-performance backend systems. I architect scalable solutions, mentor engineering teams, and drive technical excellence across Web2, Web3, AI, and Metaverse platforms.</p>
+                                    <ul class="achievements">
+                                        <li>Architected and optimized AWS cloud infrastructure from scratch, handling millions of daily transactions while reducing costs by ~60% through strategic optimizations.</li>
+                                        <li>Led the design and implementation of a decentralized ecosystem, including Validator, RPC, and Sentry nodes for enhanced network reliability and security.</li>
+                                        <li>Established engineering best practices, CI/CD pipelines, and monitoring solutions using Prometheus, Grafana, and Sentry for optimal system performance.</li>
+                                        <li>Mentored engineering teams in cloud architecture, system design, and DevOps practices, resulting in improved code quality and deployment efficiency.</li>
+                                        <li>Implemented comprehensive cloud security measures and disaster recovery strategies for high-availability systems.</li>
+                                        <li>Designed and deployed containerized environments using Kubernetes, Docker, and serverless architectures for scalable infrastructure.</li>
+                                        <li>Drove technical strategy and innovation while maintaining hands-on involvement in critical system development.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="experience-content">
+                                <div class="experience-header">
+                                    <img src="assets/andela.png" alt="Andela" class="company-logo">
+                                    <div class="role-info">
+                                        <h3 class="role">Senior DevOps & Backend Engineer</h3>
+                                        <p class="period">July 2023 - January 2024 | Remote</p>
+                                    </div>
+                                </div>
+                                <div class="experience-body">
+                                    <p class="role-description">Led the development of cloud-native infrastructure and backend systems, focusing on scalability, security, and high performance. Implemented DevOps best practices and automated deployment pipelines for global teams.</p>
+                                    <ul class="achievements">
+                                        <li>Architected and implemented scalable cloud infrastructure using AWS, Kubernetes, and Terraform for distributed systems.</li>
+                                        <li>Developed high-performance backend services in Golang, focusing on microservices architecture and API design.</li>
+                                        <li>Implemented comprehensive CI/CD pipelines and GitOps workflows for automated deployments and infrastructure management.</li>
+                                        <li>Designed and deployed monitoring solutions using Prometheus and Grafana for system observability.</li>
+                                        <li>Optimized cloud resources and reduced operational costs through efficient infrastructure management.</li>
                     </ul>
                     </div>
-                   <br>
-                   <br>
-                    <div>
-                      <a href="https://www.linkedin.com/company/stealthstartup/" target="_blank">
-                      <img style="max-width:100px;" src="assets/stealth.png" alt="StealthLogo">
-                      </a>
-                      <h2>Golang Developer</h2> 
-                      <h3>June 2018 - June 2020 </h3>
-                      <p>
-                        I worked in a Fintech company building a Trading execution platform targeting top Cryptocurrency exchanges. Also, developed data analysis, investment tracking tools in a distributed but tight-knit team spans 3 continents and collaborates through git, Gitlab, messaging, and VOIP.
-                        <br>
-                        <br>
-                        I mostly worked on developing and debugging web servers, APIs, Libraries, and tools using Golang and Cloud-Native technologies. 
-                        Along with building core Cryptocurrency Trade execution platform and tools, I also designed, built & maintained robust infrastructure on DigitalOcean / AWS Cloud using Gitlab, Kubernetes, Docker, CI/CD, Terraform, Helm, metric collection & monitoring tools such as Grafana, Telegraf, Influxdb, and other Cloud-native & DevOps technologies.
-                      </p>
                     </div>
-                    <br>
-                    <br>
-                        <div>
-                          <a href="#">
-                          <img style="max-width:100px;" src="assets/k.jpeg" alt="klogo">
-                          </a>
-                          <h2>Go & Devops Engineer - Consultant</h2> 
-                          <h3>November 2017 - June 2020</h3>
-                          <p>
-                            As a consultant I worked with multiple International clients, helping build functionalities and backend services in Go. I also built robust, maintainable and highly scalable Infrastructures using DevOps and Cloud-Native technologies. I also provided freelance services to some popular clients like Toggl Hire, etc.
-                          </p> 
                         </div>
                       
+                        <div class="experience-item">
+                            <div class="experience-content">
+                                <div class="experience-header">
+                                    <img src="assets/shipa.png" alt="Shipa" class="company-logo">
+                                    <div class="role-info">
+                                        <h3 class="role">Senior Backend Engineer & Cloud Architect</h3>
+                                        <p class="period">August 2020 - January 2023 | Remote</p>
+                                    </div>
+                                </div>
+                                <div class="experience-body">
+                                    <p class="role-description">Led the development of cloud-native application platform, focusing on multi-cloud architecture, Kubernetes orchestration, and high-performance backend systems.</p>
+                                    <ul class="achievements">
+                                        <li>Architected and developed core platform features using Golang, focusing on scalability and performance across multi-cloud environments.</li>
+                                        <li>Designed and implemented Kubernetes Operators for dynamic application orchestration and management.</li>
+                                        <li>Led cloud infrastructure design and implementation across AWS and GCP platforms.</li>
+                                        <li>Developed automated deployment pipelines and infrastructure-as-code using Terraform and Helm.</li>
+                                        <li>Implemented comprehensive monitoring and logging solutions for system observability.</li>
+                                        <li>Reduced deployment time by 70% through automation and infrastructure improvements.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div>
-                    <br>
-                    <br>
-                    <img style="max-width:200px;" src="assets/thekabaadiguy.png" alt="TheKabaadiGuylogo">
-                    <div style="float: right;">
-                        <a href="https://facebook.com/TheKabaadiGuy/" class="fa fa-facebook" target="_blank"></a>
-                        <a href="https://www.google.com/search?q=thekabaadiguy" class="fa fa-google" target="_blank"></a>
+                        <div class="experience-item">
+                            <div class="experience-content">
+                                <div class="experience-header">
+                                    <img src="assets/stealth.png" alt="Stealth" class="company-logo">
+                                    <div class="role-info">
+                                        <h3 class="role">Backend Engineer & DevOps Specialist</h3>
+                                        <p class="period">June 2018 - June 2020 | Remote</p>
                     </div>
-                    <h2>Co-Founder</h2> 
-                    <h3>April 2016 - November 2017 </h3>
-                    <p>In the year 2016, I Co-founded a startup, at the age of 20, which was a waste management company. 
-                      We provided a free doorstep service to collect junk/scrap material from different locations and the environment-friendly service to create go green.</p> 
-                      <ul style="display: table;margin: 10 auto;padding: 10px;list-style-type:circle;">
-                        <li>The company served thousands of customers at some major cities of Rajasthan and Madhya Pradesh ( India ).</li>
-                        <li>The startup was featured on the headlines of different newspapers and local news channels.</li>
-                        <li>The startup was also appreciated by Sir Manish Sisodia who has been the Deputy Chief Minister of Delhi ( India ) and also a social activist and active member of the National Executive Committee of the <a style="color: aliceblue" href="https://en.wikipedia.org/wiki/Aam_Aadmi_Party" target="_blank">Aam Aadmi Party.</a></li>
+                                </div>
+                                <div class="experience-body">
+                                    <p class="role-description">Developed and maintained high-performance backend systems for cryptocurrency trading platforms, focusing on real-time data processing and system reliability.</p>
+                                    <ul class="achievements">
+                                        <li>Architected and developed real-time trading systems using Golang, integrating with major cryptocurrency exchanges.</li>
+                                        <li>Implemented cloud infrastructure on DigitalOcean using Kubernetes, Docker, and Terraform.</li>
+                                        <li>Designed and developed RESTful APIs and microservices for high-performance trading systems.</li>
+                                        <li>Set up comprehensive monitoring using Prometheus, Grafana, and ELK stack.</li>
+                                        <li>Optimized system performance, reducing latency by 40% through efficient database and caching strategies.</li>
                       </ul>
+                                </div>
                     </div>
                 </div>
 
-        <div class="night">
-                <div class="shooting_star"></div>
-                <div class="shooting_star"></div>
-                <div class="shooting_star"></div>
-                <div class="shooting_star"></div>
-                <div class="shooting_star"></div>
-                <div class="shooting_star"></div>
+                        <div class="experience-item">
+                            <div class="experience-content">
+                                <div class="experience-header">
+                                    <img src="assets/kabaadi.png" alt="The Kabaadi Guy" class="company-logo">
+                                    <div class="role-info">
+                                        <h3 class="role">Lead Engineer & Technical Architect</h3>
+                                        <p class="period">April 2016 - November 2017 | Kota, India</p>
+                                    </div>
+                                </div>
+                                <div class="experience-body">
+                                    <p class="role-description">Led the technical development of a waste management startup, architecting scalable solutions and building innovative systems for sustainable waste collection.</p>
+                                    <ul class="achievements">
+                                        <li>Architected and developed the company's web platform and mobile applications.</li>
+                                        <li>Implemented real-time tracking and scheduling systems for efficient waste collection.</li>
+                                        <li>Built analytics dashboard for monitoring operations and customer engagement.</li>
+                                        <li>The startup served thousands of customers across major Indian cities.</li>
+                                        <li>Featured in top newspapers and news channels, recognized by the Deputy Chief Minister of Delhi.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
         </div>
         
-        <div id="blog_section">
-                <h1>Work.</h1>
-                <p>Here is some of my work.</p>
-                <div id="blogs">
+            <div id="about" class="tab-pane">
+                <section class="section">
+                    <h2 class="section-title">About</h2>
+                    <p>
+                        Saurabh is a hands-on Engineering Leader with 8+ years of experience building and scaling backend systems, infrastructure, and architecture across startups and globally distributed platforms. From early-stage builds to leading core engineering for a Top 10 Global Cryptocurrency, he's delivered systems that support millions of users and billions of transactions—securely, efficiently, and at scale.
+                    </p>
+                    <p>
+                        He works across serverless, event-driven, and containerized architectures using Golang, Kubernetes, and AWS, with a strong focus on clean system design, performance, and developer velocity. He's led remote teams, mentored engineers, and driven infrastructure strategy while remaining deeply involved in the code.
+                    </p>
+                    <p>
+                        Saurabh is a CNCF project maintainer and open-source contributor to Google, GitHub, Twilio, and others. With a growing community of over 21,000+ people on LinkedIn, he's known for pairing sharp execution with scalable thinking—and building the systems people rely on every day.
+                    </p>
+                </section>
                 </div>
-                <div class="night_reverse">
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
-                    <div class="shooting_star"></div>
+
+            <div id="testimonials" class="tab-pane">
+                <section class="section">
+                    <h2 class="section-title">Testimonials</h2>
+                    <div class="testimonials">
+                        <div class="testimonial-card">
+                            <img src="assets/t1.png" alt="Testimonial 1">
             </div>
+                        <div class="testimonial-card">
+                            <img src="assets/t2.png" alt="Testimonial 2">
         </div>
-        <div id="blog">
-            <h1>Testimonials.</h1>
-            <p>What others think of me?</p>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t7.png" id="img_0_original" alt="t7"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t8.png" id="img_0_original" alt="t8"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t1.png" id="img_0_original" alt="t1"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t2.png" id="img_0_original" alt="t2"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t9.png" id="img_0_original" alt="t9"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t3.png" id="img_0_original" alt="t3"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t4.png" id="img_0_original" alt="t4"></a>
-            <a href="https://www.linkedin.com/in/itsksaurabh/"><img src="assets/t5.png" id="img_0_original" alt="t5"></a>
-            <a href="https://twitter.com/BretFisher/status/1253816362692161536"><img src="assets/t6.png" id="img_0_original" alt="t6"></a>          
+                        <div class="testimonial-card">
+                            <img src="assets/t3.png" alt="Testimonial 3">
         </div>
-        <div id="footer">
-            <a>Made with ❤️ in India 🇮🇳</a>
           </div>
+                </section>
     </div>
+        </div>
+    </div>
+
+    <a href="mailto:your.email@example.com" class="contact-button">
+        <i class="fas fa-envelope"></i> Contact Me
+    </a>
+
     <script type="text/javascript">
         setTimeout(function() {
           document.getElementById("loading").classList.add("animated");
@@ -218,20 +1384,196 @@
         });
       </script>
     <script>
-      const magicProjectsGrid = new MagicGrid({
-        container: "#work_section",
-        animate: false,
-        gutter: 30, // default gutter size
-        static: true,
-        useMin: false,
-        maxColumns: 2,
-        useTransform: true
-      });
+        // Smooth scroll for testimonials
+        const container = document.querySelector('.testimonials');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-      $("document").ready(() => {
-        magicProjectsGrid.listen();
-      });
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            container.style.cursor = 'grabbing';
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            container.scrollLeft = scrollLeft - walk;
+        });
+
+        // Auto-scroll testimonials
+        let scrollInterval;
+
+        function startAutoScroll() {
+            scrollInterval = setInterval(() => {
+                container.scrollLeft += 1;
+                if (container.scrollLeft >= container.scrollWidth - container.clientWidth) {
+                    container.scrollLeft = 0;
+                }
+            }, 30);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(scrollInterval);
+        }
+
+        container.addEventListener('mouseenter', stopAutoScroll);
+        container.addEventListener('mouseleave', startAutoScroll);
+
+        startAutoScroll();
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            observer.observe(section);
+        });
+
+        // Enhanced Intersection Observer for timeline animations
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add a slight delay between each item
+                    const delay = entry.target.dataset.index * 200;
+                    setTimeout(() => {
+                        entry.target.style.transitionDelay = `${delay}ms`;
+                    }, 0);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '-50px'
+        });
+
+        // Observe all experience items with index
+        document.querySelectorAll('.experience-item').forEach((item, index) => {
+            item.dataset.index = index;
+            observer.observe(item);
+        });
+
+        // Add parallax effect to timeline
+        const timeline = document.querySelector('.timeline');
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { left, top, width, height } = timeline.getBoundingClientRect();
+            const x = (clientX - left) / width;
+            const y = (clientY - top) / height;
+            
+            timeline.style.setProperty('--mouse-x', `${x * 20}px`);
+            timeline.style.setProperty('--mouse-y', `${y * 20}px`);
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        function showTab(tabId) {
+            // Hide all tabs
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // Add active class to clicked button
+            const activeButton = document.querySelector(`[data-target="#${tabId}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+
+        // Add click event listeners to tab buttons
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target.replace('#', '');
+                showTab(targetId);
+            });
+        });
+
+        // Initialize first tab
+        showTab('home');
+
+        // Typewriter effect for IDE
+        const codeLines = document.querySelectorAll('.code-line');
+        let currentLine = 0;
+
+        function typeNextLine() {
+            if (currentLine < codeLines.length) {
+                codeLines[currentLine].style.opacity = '1';
+                codeLines[currentLine].classList.add('visible');
+                currentLine++;
+                setTimeout(typeNextLine, 200);
+            }
+        }
+
+        // Start typing effect when home tab is shown
+        document.querySelector('[data-target="#home"]').addEventListener('click', () => {
+            codeLines.forEach(line => line.classList.remove('visible'));
+            currentLine = 0;
+            setTimeout(typeNextLine, 500);
+        });
+
+        // Initial typing effect
+        setTimeout(typeNextLine, 1000);
+
+        // Typewriter effect for description
+        const typewriterTexts = document.querySelectorAll('.typewriter-text');
+        let currentText = 0;
+
+        function typeNextText() {
+            if (currentText < typewriterTexts.length) {
+                typewriterTexts[currentText].classList.add('typing');
+                currentText++;
+                setTimeout(typeNextText, 3000); // Wait for previous text to finish typing
+            }
+        }
+
+        // Start typewriter effect when home tab is shown
+        document.querySelector('[data-target="#home"]').addEventListener('click', () => {
+            typewriterTexts.forEach(text => {
+                text.classList.remove('typing');
+                text.style.width = '0';
+            });
+            currentText = 0;
+            setTimeout(typeNextText, 500);
+        });
+
+        // Initial typewriter effect
+        setTimeout(typeNextText, 1000);
     </script>
-  
+</body>
+</html>
 
-</body></html>
