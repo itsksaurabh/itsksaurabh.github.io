@@ -506,12 +506,14 @@
 
         .testimonials {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             overflow-x: auto;
             padding: 2rem 0;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
-            animation: fadeInUp 1s ease-out;
+            -webkit-overflow-scrolling: touch;
+            height: calc(100vh - 200px);
+            align-items: center;
         }
 
         .testimonials::-webkit-scrollbar {
@@ -519,45 +521,137 @@
         }
 
         .testimonial-card {
-            flex: 0 0 500px;
-            scroll-snap-align: start;
+            flex: 0 0 90%;
+            max-width: 90%;
+            scroll-snap-align: center;
             background: var(--card-bg);
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .testimonial-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .testimonial-image {
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .testimonial-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .testimonial-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .testimonial-card img {
+        .testimonial-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
 
-        .testimonial-card:hover img {
+        .testimonial-card:hover .testimonial-image img {
             transform: scale(1.05);
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 70%;
+                max-width: 70%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Add touch-friendly scrolling */
+        .testimonials {
+            touch-action: pan-x;
+            cursor: grab;
+        }
+
+        .testimonials:active {
+            cursor: grabbing;
+        }
+
+        /* Add zoom overlay */
+        .testimonial-card::after {
+            content: '🔍';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .testimonial-card:hover::after {
+            opacity: 1;
+        }
+
+        .testimonial-content {
+            padding: 2rem;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-primary);
+            object-fit: cover;
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin: 0;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-rating {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-rating i {
+            margin-right: 0.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 300px;
+            }
         }
 
         .contact-button {
@@ -1004,6 +1098,456 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Add these enhanced styles */
+        .testimonials-container {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 200px);
+            overflow: hidden;
+        }
+
+        .testimonials {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            height: 100%;
+            align-items: center;
+            position: relative;
+        }
+
+        .testimonials::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 90%;
+            max-width: 90%;
+            scroll-snap-align: center;
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-primary);
+        }
+
+        .testimonial-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card:hover .testimonial-image img {
+            transform: scale(1.1);
+        }
+
+        .testimonial-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card:hover .testimonial-overlay {
+            transform: translateY(0);
+        }
+
+        .testimonial-content {
+            color: white;
+            text-align: center;
+        }
+
+        .testimonial-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .testimonial-content p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .testimonials-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+
+        .nav-button {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-button:hover {
+            background: var(--accent-primary);
+            transform: scale(1.1);
+        }
+
+        .nav-button.prev {
+            margin-right: auto;
+        }
+
+        .nav-button.next {
+            margin-left: auto;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 70%;
+                max-width: 70%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonial-card {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Add 3D effect */
+        .testimonial-card {
+            perspective: 1000px;
+        }
+
+        .testimonial-image {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card:hover .testimonial-image {
+            transform: rotateX(5deg) rotateY(5deg);
+        }
+
+        /* Add glow effect */
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+
+        .testimonial-card:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Add floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .testimonial-card {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .testimonial-card:nth-child(2n) {
+            animation-delay: 1s;
+        }
+
+        .testimonial-card:nth-child(3n) {
+            animation-delay: 2s;
+        }
+
+        /* Add these new styles */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            height: calc(100vh - 200px);
+            overflow: hidden;
+        }
+
+        .testimonial-item {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.3));
+        }
+
+        .testimonial-item:hover img {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.6));
+        }
+
+        .testimonial-item.active img {
+            transform: scale(1.5);
+            z-index: 1000;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.5);
+            max-width: 90vw;
+            max-height: 90vh;
+            filter: drop-shadow(0 0 30px rgba(0, 180, 255, 0.8));
+        }
+
+        .testimonial-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, var(--accent-primary) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .testimonial-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .testimonial-item.active::before {
+            opacity: 0.2;
+        }
+
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.6)); }
+            100% { filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.3)); }
+        }
+
+        .testimonial-item img {
+            animation: glow 3s infinite;
+        }
+
+        .testimonial-item:nth-child(2n) img {
+            animation-delay: 0.5s;
+        }
+
+        .testimonial-item:nth-child(3n) img {
+            animation-delay: 1s;
+        }
+
+        .testimonials-grid::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .testimonial-item.active ~ .testimonials-grid::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Add these new floating animation styles */
+        .testimonials {
+            position: relative;
+            height: calc(100vh - 200px);
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-img {
+            position: absolute;
+            max-width: 400px;
+            max-height: 400px;
+            object-fit: contain;
+            cursor: pointer;
+            filter: drop-shadow(0 0 10px rgba(0, 180, 255, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .floating-img:hover {
+            filter: drop-shadow(0 0 20px rgba(0, 180, 255, 0.8));
+            transform: scale(1.2) !important;
+            z-index: 100;
+        }
+
+        .floating-img.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.5) !important;
+            max-width: 90vw;
+            max-height: 90vh;
+            z-index: 1000;
+            cursor: zoom-out;
+            filter: drop-shadow(0 0 30px rgba(0, 180, 255, 0.9));
+        }
+
+        .floating-img.zoomed:hover {
+            transform: translate(-50%, -50%) scale(1.5) !important;
+        }
+
+        @media (max-width: 768px) {
+            .floating-img {
+                max-width: 300px;
+                max-height: 300px;
+            }
+        }
+
+        .float-1 { top: 10%; left: 5%; animation: float1 15s infinite ease-in-out; }
+        .float-2 { top: 20%; left: 25%; animation: float2 18s infinite ease-in-out; }
+        .float-3 { top: 15%; left: 45%; animation: float3 20s infinite ease-in-out; }
+        .float-4 { top: 25%; left: 65%; animation: float4 17s infinite ease-in-out; }
+        .float-5 { top: 50%; left: 15%; animation: float5 19s infinite ease-in-out; }
+        .float-6 { top: 60%; left: 35%; animation: float6 16s infinite ease-in-out; }
+        .float-7 { top: 55%; left: 55%; animation: float7 21s infinite ease-in-out; }
+        .float-8 { top: 65%; left: 75%; animation: float8 18s infinite ease-in-out; }
+        .float-9 { top: 80%; left: 45%; animation: float9 20s infinite ease-in-out; }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -15px) rotate(2deg); }
+            50% { transform: translate(-15px, 10px) rotate(-2deg); }
+            75% { transform: translate(10px, 15px) rotate(1deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-20px, 15px) rotate(-2deg); }
+            50% { transform: translate(15px, -10px) rotate(2deg); }
+            75% { transform: translate(-10px, -15px) rotate(-1deg); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(15px, 20px) rotate(1deg); }
+            50% { transform: translate(-20px, -15px) rotate(-1deg); }
+            75% { transform: translate(15px, -20px) rotate(2deg); }
+        }
+
+        @keyframes float4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-15px, -20px) rotate(-1deg); }
+            50% { transform: translate(20px, 15px) rotate(1deg); }
+            75% { transform: translate(-15px, 20px) rotate(-2deg); }
+        }
+
+        @keyframes float5 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, 15px) rotate(2deg); }
+            50% { transform: translate(-15px, -20px) rotate(-2deg); }
+            75% { transform: translate(10px, -15px) rotate(1deg); }
+        }
+
+        @keyframes float6 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-20px, -15px) rotate(-2deg); }
+            50% { transform: translate(15px, 20px) rotate(2deg); }
+            75% { transform: translate(-10px, 15px) rotate(-1deg); }
+        }
+
+        @keyframes float7 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(15px, -20px) rotate(1deg); }
+            50% { transform: translate(-20px, 15px) rotate(-1deg); }
+            75% { transform: translate(15px, 20px) rotate(2deg); }
+        }
+
+        @keyframes float8 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-15px, 20px) rotate(-1deg); }
+            50% { transform: translate(20px, -15px) rotate(1deg); }
+            75% { transform: translate(-15px, -20px) rotate(-2deg); }
+        }
+
+        @keyframes float9 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -15px) rotate(2deg); }
+            50% { transform: translate(-15px, 20px) rotate(-2deg); }
+            75% { transform: translate(10px, 15px) rotate(1deg); }
+        }
+
+        @media (max-width: 768px) {
+            .floating-img {
+                max-width: 300px;
+                max-height: 300px;
+            }
+        }
     </style>
     <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png">
 </head>
@@ -1016,7 +1560,6 @@
     <div class="container">
         <nav class="tab-nav">
             <button class="tab-button" data-target="#home">Home</button>
-            <button class="tab-button" data-target="#experience">Experience</button>
             <button class="tab-button" data-target="#testimonials">Testimonials</button>
         </nav>
 
@@ -1031,8 +1574,8 @@
                         <a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/itsksaurabh" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://itsksaurabh.medium.com/" target="_blank"><i class="fab fa-medium"></i></a>
+            </div>
                     </div>
-                </div>
                 <div class="ide-section">
                     <div class="ide-container">
                         <div class="ide-header">
@@ -1040,7 +1583,7 @@
                             <button class="ide-button minimize"></button>
                             <button class="ide-button maximize"></button>
                             <span class="ide-title">profile.go</span>
-                        </div>
+                    </div>
                         <div class="ide-content">
                             <div class="code-line"><span class="code-keyword">package</span> <span class="code-function">main</span></div>
                             <div class="code-line"></div>
@@ -1228,151 +1771,23 @@
                             <div class="code-line">}</div>
                         </div>
                     </div>
+                    </div>
                 </div>
-            </div>
-
-            <div id="experience" class="tab-pane">
-                <section class="experience-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Experience</h2>
-                        <div class="section-line"></div>
-                    </div>
-
-                    <div class="timeline">
-                        <div class="experience-item">
-                            <div class="experience-content">
-                                <div class="experience-header">
-                                    <img src="assets/shiba.png" alt="Shiba Inu" class="company-logo">
-                                    <div class="role-info">
-                                        <h3 class="role">Engineering Lead & Cloud Architect</h3>
-                                        <p class="period">January 2024 - Present | Remote</p>
-                                    </div>
-                                </div>
-                                <div class="experience-body">
-                                    <p class="role-description">As Engineering Lead at Shiba Inu (a top 10 global cryptocurrency), I lead the development of cloud-native infrastructure and high-performance backend systems. I architect scalable solutions, mentor engineering teams, and drive technical excellence across Web2, Web3, AI, and Metaverse platforms.</p>
-                                    <ul class="achievements">
-                                        <li>Architected and optimized AWS cloud infrastructure from scratch, handling millions of daily transactions while reducing costs by ~60% through strategic optimizations.</li>
-                                        <li>Led the design and implementation of a decentralized ecosystem, including Validator, RPC, and Sentry nodes for enhanced network reliability and security.</li>
-                                        <li>Established engineering best practices, CI/CD pipelines, and monitoring solutions using Prometheus, Grafana, and Sentry for optimal system performance.</li>
-                                        <li>Mentored engineering teams in cloud architecture, system design, and DevOps practices, resulting in improved code quality and deployment efficiency.</li>
-                                        <li>Implemented comprehensive cloud security measures and disaster recovery strategies for high-availability systems.</li>
-                                        <li>Designed and deployed containerized environments using Kubernetes, Docker, and serverless architectures for scalable infrastructure.</li>
-                                        <li>Drove technical strategy and innovation while maintaining hands-on involvement in critical system development.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-content">
-                                <div class="experience-header">
-                                    <img src="assets/andela.png" alt="Andela" class="company-logo">
-                                    <div class="role-info">
-                                        <h3 class="role">Senior DevOps & Backend Engineer</h3>
-                                        <p class="period">July 2023 - January 2024 | Remote</p>
-                                    </div>
-                                </div>
-                                <div class="experience-body">
-                                    <p class="role-description">Led the development of cloud-native infrastructure and backend systems, focusing on scalability, security, and high performance. Implemented DevOps best practices and automated deployment pipelines for global teams.</p>
-                                    <ul class="achievements">
-                                        <li>Architected and implemented scalable cloud infrastructure using AWS, Kubernetes, and Terraform for distributed systems.</li>
-                                        <li>Developed high-performance backend services in Golang, focusing on microservices architecture and API design.</li>
-                                        <li>Implemented comprehensive CI/CD pipelines and GitOps workflows for automated deployments and infrastructure management.</li>
-                                        <li>Designed and deployed monitoring solutions using Prometheus and Grafana for system observability.</li>
-                                        <li>Optimized cloud resources and reduced operational costs through efficient infrastructure management.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-content">
-                                <div class="experience-header">
-                                    <img src="assets/shipa.png" alt="Shipa" class="company-logo">
-                                    <div class="role-info">
-                                        <h3 class="role">Senior Backend Engineer & Cloud Architect</h3>
-                                        <p class="period">August 2020 - January 2023 | Remote</p>
-                                    </div>
-                                </div>
-                                <div class="experience-body">
-                                    <p class="role-description">Led the development of cloud-native application platform, focusing on multi-cloud architecture, Kubernetes orchestration, and high-performance backend systems.</p>
-                                    <ul class="achievements">
-                                        <li>Architected and developed core platform features using Golang, focusing on scalability and performance across multi-cloud environments.</li>
-                                        <li>Designed and implemented Kubernetes Operators for dynamic application orchestration and management.</li>
-                                        <li>Led cloud infrastructure design and implementation across AWS and GCP platforms.</li>
-                                        <li>Developed automated deployment pipelines and infrastructure-as-code using Terraform and Helm.</li>
-                                        <li>Implemented comprehensive monitoring and logging solutions for system observability.</li>
-                                        <li>Reduced deployment time by 70% through automation and infrastructure improvements.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-content">
-                                <div class="experience-header">
-                                    <img src="assets/stealth.png" alt="Stealth" class="company-logo">
-                                    <div class="role-info">
-                                        <h3 class="role">Backend Engineer & DevOps Specialist</h3>
-                                        <p class="period">June 2018 - June 2020 | Remote</p>
-                                    </div>
-                                </div>
-                                <div class="experience-body">
-                                    <p class="role-description">Developed and maintained high-performance backend systems for cryptocurrency trading platforms, focusing on real-time data processing and system reliability.</p>
-                                    <ul class="achievements">
-                                        <li>Architected and developed real-time trading systems using Golang, integrating with major cryptocurrency exchanges.</li>
-                                        <li>Implemented cloud infrastructure on DigitalOcean using Kubernetes, Docker, and Terraform.</li>
-                                        <li>Designed and developed RESTful APIs and microservices for high-performance trading systems.</li>
-                                        <li>Set up comprehensive monitoring using Prometheus, Grafana, and ELK stack.</li>
-                                        <li>Optimized system performance, reducing latency by 40% through efficient database and caching strategies.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="experience-item">
-                            <div class="experience-content">
-                                <div class="experience-header">
-                                    <img src="assets/kabaadi.png" alt="The Kabaadi Guy" class="company-logo">
-                                    <div class="role-info">
-                                        <h3 class="role">Lead Engineer & Technical Architect</h3>
-                                        <p class="period">April 2016 - November 2017 | Kota, India</p>
-                                    </div>
-                                </div>
-                                <div class="experience-body">
-                                    <p class="role-description">Led the technical development of a waste management startup, architecting scalable solutions and building innovative systems for sustainable waste collection.</p>
-                                    <ul class="achievements">
-                                        <li>Architected and developed the company's web platform and mobile applications.</li>
-                                        <li>Implemented real-time tracking and scheduling systems for efficient waste collection.</li>
-                                        <li>Built analytics dashboard for monitoring operations and customer engagement.</li>
-                                        <li>The startup served thousands of customers across major Indian cities.</li>
-                                        <li>Featured in top newspapers and news channels, recognized by the Deputy Chief Minister of Delhi.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
 
             <div id="testimonials" class="tab-pane">
-                <section class="section">
-                    <h2 class="section-title">Testimonials</h2>
-                    <div class="testimonials">
-                        <div class="testimonial-card">
-                            <img src="assets/t1.png" alt="Testimonial 1">
-                        </div>
-                        <div class="testimonial-card">
-                            <img src="assets/t2.png" alt="Testimonial 2">
-                        </div>
-                        <div class="testimonial-card">
-                            <img src="assets/t3.png" alt="Testimonial 3">
-                        </div>
-                    </div>
-                </section>
+                <div class="testimonials">
+                    <img src="assets/Testimonials/t1.png" alt="Testimonial 1" class="floating-img float-1">
+                    <img src="assets/Testimonials/t2.png" alt="Testimonial 2" class="floating-img float-2">
+                    <img src="assets/Testimonials/t3.png" alt="Testimonial 3" class="floating-img float-3">
+                    <img src="assets/Testimonials/t4.png" alt="Testimonial 4" class="floating-img float-4">
+                    <img src="assets/Testimonials/t5.png" alt="Testimonial 5" class="floating-img float-5">
+                    <img src="assets/Testimonials/t6.png" alt="Testimonial 6" class="floating-img float-6">
+                    <img src="assets/Testimonials/t7.png" alt="Testimonial 7" class="floating-img float-7">
+                    <img src="assets/Testimonials/t8.png" alt="Testimonial 8" class="floating-img float-8">
+                    <img src="assets/Testimonials/t9.png" alt="Testimonial 9" class="floating-img float-9">
+                </div>
             </div>
         </div>
-    </div>
 
     <a href="mailto:your.email@example.com" class="contact-button">
         <i class="fas fa-envelope"></i> Contact Me
@@ -1603,6 +2018,273 @@
 
         // Initial typewriter effect
         setTimeout(typeNextText, 1000);
+
+        // Add this to your existing JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonials = document.querySelector('.testimonials');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            testimonials.addEventListener('mousedown', (e) => {
+                isDown = true;
+                testimonials.style.cursor = 'grabbing';
+                startX = e.pageX - testimonials.offsetLeft;
+                scrollLeft = testimonials.scrollLeft;
+            });
+
+            testimonials.addEventListener('mouseleave', () => {
+                isDown = false;
+                testimonials.style.cursor = 'grab';
+            });
+
+            testimonials.addEventListener('mouseup', () => {
+                isDown = false;
+                testimonials.style.cursor = 'grab';
+            });
+
+            testimonials.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - testimonials.offsetLeft;
+                const walk = (x - startX) * 2;
+                testimonials.scrollLeft = scrollLeft - walk;
+            });
+
+            // Add touch support
+            testimonials.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - testimonials.offsetLeft;
+                scrollLeft = testimonials.scrollLeft;
+            });
+
+            testimonials.addEventListener('touchend', () => {
+                isDown = false;
+            });
+
+            testimonials.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - testimonials.offsetLeft;
+                const walk = (x - startX) * 2;
+                testimonials.scrollLeft = scrollLeft - walk;
+            });
+
+            // Add auto-scroll on hover
+            let scrollInterval;
+            const cards = document.querySelectorAll('.testimonial-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    clearInterval(scrollInterval);
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    startAutoScroll();
+                });
+            });
+
+            function startAutoScroll() {
+                scrollInterval = setInterval(() => {
+                    testimonials.scrollLeft += 1;
+                    if (testimonials.scrollLeft >= testimonials.scrollWidth - testimonials.clientWidth) {
+                        testimonials.scrollLeft = 0;
+                    }
+                }, 30);
+            }
+
+            startAutoScroll();
+        });
+
+        // Add this to your existing JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonials = document.querySelector('.testimonials');
+            const prevButton = document.querySelector('.nav-button.prev');
+            const nextButton = document.querySelector('.nav-button.next');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            // Navigation buttons
+            prevButton.addEventListener('click', () => {
+                testimonials.scrollBy({
+                    left: -testimonials.offsetWidth * 0.8,
+                    behavior: 'smooth'
+                });
+            });
+
+            nextButton.addEventListener('click', () => {
+                testimonials.scrollBy({
+                    left: testimonials.offsetWidth * 0.8,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Mouse events
+            testimonials.addEventListener('mousedown', (e) => {
+                isDown = true;
+                testimonials.style.cursor = 'grabbing';
+                startX = e.pageX - testimonials.offsetLeft;
+                scrollLeft = testimonials.scrollLeft;
+            });
+
+            testimonials.addEventListener('mouseleave', () => {
+                isDown = false;
+                testimonials.style.cursor = 'grab';
+            });
+
+            testimonials.addEventListener('mouseup', () => {
+                isDown = false;
+                testimonials.style.cursor = 'grab';
+            });
+
+            testimonials.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - testimonials.offsetLeft;
+                const walk = (x - startX) * 2;
+                testimonials.scrollLeft = scrollLeft - walk;
+            });
+
+            // Touch events
+            testimonials.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - testimonials.offsetLeft;
+                scrollLeft = testimonials.scrollLeft;
+            });
+
+            testimonials.addEventListener('touchend', () => {
+                isDown = false;
+            });
+
+            testimonials.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - testimonials.offsetLeft;
+                const walk = (x - startX) * 2;
+                testimonials.scrollLeft = scrollLeft - walk;
+            });
+
+            // Auto-scroll with pause
+            let scrollInterval;
+            const cards = document.querySelectorAll('.testimonial-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    clearInterval(scrollInterval);
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    startAutoScroll();
+                });
+            });
+
+            function startAutoScroll() {
+                scrollInterval = setInterval(() => {
+                    testimonials.scrollLeft += 1;
+                    if (testimonials.scrollLeft >= testimonials.scrollWidth - testimonials.clientWidth) {
+                        testimonials.scrollLeft = 0;
+                    }
+                }, 30);
+            }
+
+            startAutoScroll();
+
+            // Add parallax effect
+            testimonials.addEventListener('mousemove', (e) => {
+                const cards = document.querySelectorAll('.testimonial-card');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardX = rect.left + rect.width / 2;
+                    const cardY = rect.top + rect.height / 2;
+                    const angleX = (mouseY - cardY / window.innerHeight) * 10;
+                    const angleY = (mouseX - cardX / window.innerWidth) * -10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialItems = document.querySelectorAll('.testimonial-item');
+            const grid = document.querySelector('.testimonials-grid');
+
+            testimonialItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Remove active class from all items
+                    testimonialItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Toggle active state
+                    if (!isActive) {
+                        item.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+
+            // Close on click outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.testimonial-item')) {
+                    testimonialItems.forEach(item => item.classList.remove('active'));
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    testimonialItems.forEach(item => item.classList.remove('active'));
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Add this to your existing JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.floating-img');
+            const testimonials = document.querySelector('.testimonials');
+
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent event from bubbling up
+                    const isZoomed = img.classList.contains('zoomed');
+                    
+                    // Remove zoomed class from all images
+                    images.forEach(i => i.classList.remove('zoomed'));
+                    
+                    // Toggle zoom state
+                    if (!isZoomed) {
+                        img.classList.add('zoomed');
+                        testimonials.style.overflow = 'hidden';
+                    } else {
+                        testimonials.style.overflow = '';
+                    }
+                });
+            });
+
+            // Close zoomed image when clicking outside
+            testimonials.addEventListener('click', (e) => {
+                if (e.target === testimonials) {
+                    images.forEach(img => img.classList.remove('zoomed'));
+                    testimonials.style.overflow = '';
+                }
+            });
+
+            // Close zoomed image on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    images.forEach(img => img.classList.remove('zoomed'));
+                    testimonials.style.overflow = '';
+                }
+            });
+        });
     </script>
 </body>
 </html>
