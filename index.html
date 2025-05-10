@@ -374,10 +374,11 @@
 
         .title {
             font-size: 1.2rem;
-            color: var(--text-secondary);
+            color: #fff;
             margin-bottom: 2rem;
             letter-spacing: 2px;
             text-align: center;
+            text-shadow: 0 0 3px #fff, 0 0 6px #fff2;
         }
 
         .social-links {
@@ -1743,8 +1744,10 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(10,20,30,0.45);
-            z-index: -1;
+            background: rgba(10,20,30,0.7);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 0;
             pointer-events: none;
         }
         /* Only the name glows */
@@ -1764,8 +1767,8 @@
 </head>
 
   <body>
-    <div class="bg-fade-overlay"></div>
     <div class="animated-bg"></div>
+    <div class="bg-fade-overlay"></div>
     <div id="loading">
       <div id="spinner"></div>
     </div>
