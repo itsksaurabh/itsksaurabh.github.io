@@ -39,7 +39,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bg-primary);
+            background: var(--bg-primary) url('assets/bg.png') 30% center/cover no-repeat fixed, linear-gradient(45deg, var(--bg-primary), var(--bg-secondary));
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -56,7 +56,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(45deg, var(--bg-primary), var(--bg-secondary));
+            background: url('assets/bg.png') center center/cover no-repeat fixed, linear-gradient(45deg, var(--bg-primary), var(--bg-secondary));
             overflow: hidden;
         }
 
@@ -247,13 +247,13 @@
 
         /* Updated IDE Container */
         .ide-container {
-            background: var(--bg-secondary);
+            background: rgba(10, 20, 30, 0.98) !important;
+            box-shadow: 0 0 20px rgba(0, 180, 255, 0.15);
             border-radius: 8px;
             height: 80vh;
             width: 100%;
             max-width: 1000px;
             margin: 0.5rem auto;
-            box-shadow: 0 0 20px rgba(0, 180, 255, 0.15);
             overflow: hidden;
             font-family: 'Fira Code', monospace;
             font-size: 0.8rem;
@@ -1736,11 +1736,35 @@
             width: 100%;
             height: 100%;
         }
+
+        .bg-fade-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(10,20,30,0.45);
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* Only the name glows */
+        .name {
+            text-shadow: 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+        }
+        /* Glowing effect for all images */
+        img {
+            filter: drop-shadow(0 0 12px #00b4ff) drop-shadow(0 0 24px #00b4ff44);
+            transition: filter 0.3s;
+        }
+        img:hover {
+            filter: drop-shadow(0 0 24px #00b4ff) drop-shadow(0 0 48px #00b4ff88);
+        }
     </style>
     <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png">
 </head>
 
   <body>
+    <div class="bg-fade-overlay"></div>
     <div class="animated-bg"></div>
     <div id="loading">
       <div id="spinner"></div>
