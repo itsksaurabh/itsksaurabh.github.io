@@ -1017,7 +1017,6 @@
         <nav class="tab-nav">
             <button class="tab-button" data-target="#home">Home</button>
             <button class="tab-button" data-target="#experience">Experience</button>
-            <button class="tab-button" data-target="#about">About</button>
             <button class="tab-button" data-target="#testimonials">Testimonials</button>
         </nav>
 
@@ -1032,7 +1031,7 @@
                         <a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/itsksaurabh" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://itsksaurabh.medium.com/" target="_blank"><i class="fab fa-medium"></i></a>
-                </div>
+                    </div>
                 </div>
                 <div class="ide-section">
                     <div class="ide-container">
@@ -1041,14 +1040,29 @@
                             <button class="ide-button minimize"></button>
                             <button class="ide-button maximize"></button>
                             <span class="ide-title">profile.go</span>
-    </div>
+                        </div>
                         <div class="ide-content">
                             <div class="code-line"><span class="code-keyword">package</span> <span class="code-function">main</span></div>
                             <div class="code-line"></div>
                             <div class="code-line"><span class="code-keyword">import</span> (</div>
                             <div class="code-line">&nbsp;&nbsp;<span class="code-string">"fmt"</span></div>
-                            <div class="code-line">&nbsp;&nbsp;<span class="code-string">"time"</span></div>
                             <div class="code-line">)</div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">aboutMe</span> = <span class="code-string">`</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">A hands-on Engineering Leader with 8+ years of experience building and scaling</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">backend systems, infrastructure, and architecture across startups and globally</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">distributed platforms. From early-stage builds to leading core engineering for</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">a Top 10 Global Cryptocurrency, delivering systems that support millions of</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">users and billions of transactions—securely, efficiently, and at scale.</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">Working across serverless, event-driven, and containerized architectures</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">using Golang, Kubernetes, and AWS, with a strong focus on clean system</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">design, performance, and developer velocity. Leading remote teams, mentoring</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">engineers, and driving infrastructure strategy while remaining deeply</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">involved in the code.</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">CNCF project maintainer and open-source contributor to Google, GitHub,</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">Twilio, and others. With a growing community of over 21,000+ people on</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">LinkedIn, known for pairing sharp execution with scalable thinking—and</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">building the systems people rely on every day.`</span></div>
                             <div class="code-line"></div>
                             <div class="code-line"><span class="code-keyword">type</span> <span class="code-function">Profile</span> <span class="code-keyword">struct</span> {</div>
                             <div class="code-line">&nbsp;&nbsp;Name        <span class="code-type">string</span>    <span class="code-comment">`json:"name"`</span></div>
@@ -1075,29 +1089,83 @@
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Performance Optimization"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;},</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;Skills: <span class="code-type">map</span>[<span class="code-type">string</span>][]<span class="code-type">string</span>{</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloud"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloud Platforms"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Amazon Web Services (AWS)"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Google Cloud Platform (GCP)"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DigitalOcean"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Infrastructure"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"System Design"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Microservices Architecture"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Event-Driven Architecture"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Distributed Systems"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"High Availability"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Fault Tolerance"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Scalability Patterns"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"API Design"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Data Modeling"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Container & Orchestration"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Kubernetes"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"EKS"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Docker"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ECS"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Fargate"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Terraform"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Helm"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Microservices"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Distributed Systems"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Serverless"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Infrastructure as Code"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Terraform"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Terragrunt"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Helm"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Ansible"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Packer"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Vagrant"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DevOps"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitOps"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CI/CD"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitHub Actions"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jenkins"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CircleCI"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitLab CI"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ArgoCD"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Flux"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Monitoring & Observability"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Prometheus"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Grafana"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ELK Stack"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jaeger"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"OpenTelemetry"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Datadog"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"New Relic"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Sentry"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Networking"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Service Mesh"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Istio"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Linkerd"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"NGINX"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"NGINX Ingress Controller"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Traefik"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Load Balancers"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"API Gateway"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CloudFront"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloudflare"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Global Accelerator"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"VPC"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Route 53"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Serverless & Event Processing"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Lambda"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Step Functions"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS App Runner"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cloud Functions"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Serverless Framework"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Apache Kafka"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS EventBridge"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS SQS"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS SNS"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Databases"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Databases & Storage"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"PostgreSQL"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"MySQL"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"MongoDB"</span>,</div>
@@ -1105,59 +1173,27 @@
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"RDS"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"TimescaleDB"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Event Processing"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Apache Kafka"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS EventBridge"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS SQS"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS SNS"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Event-Driven Architecture"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Languages"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Golang"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Python"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Shell"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"DevOps"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitOps"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CI/CD"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"GitHub Actions"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jenkins"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Monitoring"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Prometheus"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Grafana"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ELK Stack"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Datadog"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"CloudWatch"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"New Relic"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jaeger"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Observability"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Session Replay"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"LaunchDarkly"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Feature Flags"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"A/B Testing"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"User Analytics"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Security"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Security"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Vault"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"OpenSSL"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS WAF"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Shield"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS GuardDuty"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS KMS"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Secrets Manager"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Certificate Manager"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Network Security"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"IAM & RBAC"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Security Compliance"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Caching & Message Brokers"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Redis"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Memcached"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"RabbitMQ"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"ActiveMQ"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Security"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Trivy"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Snyk"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"SonarQube"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Clair"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS WAF"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"AWS Shield"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Optimizations"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Performance Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cost Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Resource Efficiency"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Scalability Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Database Optimization"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Network Optimization"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Blockchain"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Ethereum"</span>,</div>
@@ -1165,10 +1201,19 @@
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Smart Contracts"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Solidity"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Optimization"</span>: {</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Performance Optimization"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cost Optimization"</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Resource Efficiency"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Gaming & Metaverse"</span>: {</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Agones"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Fleet"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Unity"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Unreal Engine"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Pixel Streaming"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Game Server Hosting"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Game Server Scaling"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Game Analytics"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"3D Asset Management"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Virtual World Infrastructure"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Real-time Communication"</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Spatial Computing"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Leadership"</span>: {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Team Leadership"</span>,</div>
@@ -1176,8 +1221,8 @@
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Mentoring"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Agile"</span>,</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;},</div>
                             <div class="code-line">&nbsp;&nbsp;}</div>
+                            <div class="code-line">}</div>
                             <div class="code-line"></div>
                             <div class="code-line">&nbsp;&nbsp;fmt.Println(<span class="code-string">"Profile loaded successfully!"</span>)</div>
                             <div class="code-line">}</div>
@@ -1191,7 +1236,7 @@
                     <div class="section-header">
                         <h2 class="section-title">Experience</h2>
                         <div class="section-line"></div>
-            </div>
+                    </div>
 
                     <div class="timeline">
                         <div class="experience-item">
@@ -1235,11 +1280,11 @@
                                         <li>Implemented comprehensive CI/CD pipelines and GitOps workflows for automated deployments and infrastructure management.</li>
                                         <li>Designed and deployed monitoring solutions using Prometheus and Grafana for system observability.</li>
                                         <li>Optimized cloud resources and reduced operational costs through efficient infrastructure management.</li>
-                    </ul>
-                    </div>
-                    </div>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                      
+
                         <div class="experience-item">
                             <div class="experience-content">
                                 <div class="experience-header">
@@ -1270,7 +1315,7 @@
                                     <div class="role-info">
                                         <h3 class="role">Backend Engineer & DevOps Specialist</h3>
                                         <p class="period">June 2018 - June 2020 | Remote</p>
-                    </div>
+                                    </div>
                                 </div>
                                 <div class="experience-body">
                                     <p class="role-description">Developed and maintained high-performance backend systems for cryptocurrency trading platforms, focusing on real-time data processing and system reliability.</p>
@@ -1280,10 +1325,10 @@
                                         <li>Designed and developed RESTful APIs and microservices for high-performance trading systems.</li>
                                         <li>Set up comprehensive monitoring using Prometheus, Grafana, and ELK stack.</li>
                                         <li>Optimized system performance, reducing latency by 40% through efficient database and caching strategies.</li>
-                      </ul>
+                                    </ul>
                                 </div>
-                    </div>
-                </div>
+                            </div>
+                        </div>
 
                         <div class="experience-item">
                             <div class="experience-content">
@@ -1308,22 +1353,7 @@
                         </div>
                     </div>
                 </section>
-        </div>
-        
-            <div id="about" class="tab-pane">
-                <section class="section">
-                    <h2 class="section-title">About</h2>
-                    <p>
-                        Saurabh is a hands-on Engineering Leader with 8+ years of experience building and scaling backend systems, infrastructure, and architecture across startups and globally distributed platforms. From early-stage builds to leading core engineering for a Top 10 Global Cryptocurrency, he's delivered systems that support millions of users and billions of transactions—securely, efficiently, and at scale.
-                    </p>
-                    <p>
-                        He works across serverless, event-driven, and containerized architectures using Golang, Kubernetes, and AWS, with a strong focus on clean system design, performance, and developer velocity. He's led remote teams, mentored engineers, and driven infrastructure strategy while remaining deeply involved in the code.
-                    </p>
-                    <p>
-                        Saurabh is a CNCF project maintainer and open-source contributor to Google, GitHub, Twilio, and others. With a growing community of over 21,000+ people on LinkedIn, he's known for pairing sharp execution with scalable thinking—and building the systems people rely on every day.
-                    </p>
-                </section>
-                </div>
+            </div>
 
             <div id="testimonials" class="tab-pane">
                 <section class="section">
@@ -1331,16 +1361,16 @@
                     <div class="testimonials">
                         <div class="testimonial-card">
                             <img src="assets/t1.png" alt="Testimonial 1">
-            </div>
+                        </div>
                         <div class="testimonial-card">
                             <img src="assets/t2.png" alt="Testimonial 2">
-        </div>
+                        </div>
                         <div class="testimonial-card">
                             <img src="assets/t3.png" alt="Testimonial 3">
-        </div>
-          </div>
+                        </div>
+                    </div>
                 </section>
-    </div>
+            </div>
         </div>
     </div>
 
