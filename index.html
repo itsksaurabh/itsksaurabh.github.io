@@ -366,10 +366,13 @@
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            color: #fff;
+            text-shadow: 0 0 12px #fff, 0 0 32px #fff8, 0 0 48px #fff4;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .title {
@@ -400,6 +403,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+            animation: float-social 3.5s ease-in-out infinite;
+        }
+
+        .social-links a:hover {
+            box-shadow: 0 0 24px #00b4ff, 0 0 48px #00b4ff88;
+            transform: translateY(-8px) scale(1.12);
+        }
+
+        @keyframes float-social {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .content {
@@ -1762,11 +1777,72 @@
         img:hover {
             filter: drop-shadow(0 0 24px #00b4ff) drop-shadow(0 0 48px #00b4ff88);
         }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 99999;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 2px 0.5px #fff, 0 0 4px 1px #00b4ff22;
+            opacity: 0.8;
+            animation: twinkle 4s infinite alternate;
+            will-change: transform, opacity, box-shadow;
+        }
+        .star.move1 { animation-name: twinkle, drift1; }
+        .star.move2 { animation-name: twinkle, drift2; }
+        .star.move3 { animation-name: twinkle, drift3; }
+        .star.move4 { animation-name: twinkle, drift4; }
+        .star.move5 { animation-name: twinkle, drift5; }
+        @keyframes drift1 { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+        @keyframes drift2 { 0% { transform: translateY(0); } 100% { transform: translateY(10px); } }
+        @keyframes drift3 { 0% { transform: translateX(0); } 100% { transform: translateX(-10px); } }
+        @keyframes drift4 { 0% { transform: translateX(0); } 100% { transform: translateX(10px); } }
+        @keyframes drift5 { 0% { transform: translate(0,0); } 100% { transform: translate(8px,8px); } }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+                box-shadow: 0 0 1px 0px #fff, 0 0 2px 0.5px #00b4ff22;
+            }
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 4px 1.5px #fff, 0 0 8px 2px #00b4ff44;
+            }
+            100% {
+                opacity: 0.5;
+                box-shadow: 0 0 1px 0px #fff, 0 0 2px 0.5px #00b4ff22;
+            }
+        }
+        .shooting-star {
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, #00b4ff88 60%, transparent 100%);
+            box-shadow: 0 0 12px 2px #fff, 0 0 24px 4px #00b4ff44;
+            opacity: 0.9;
+            border-radius: 50%;
+            position: absolute;
+            animation: shoot 1.2s linear forwards;
+        }
+        @keyframes shoot {
+            0% { opacity: 1; transform: translate(0, 0) scaleX(1) scaleY(1); }
+            80% { opacity: 1; }
+            100% { opacity: 0; transform: translate(var(--shoot-x, 400px), var(--shoot-y, 100px)) scaleX(2.5) scaleY(0.7); }
+        }
     </style>
     <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png">
 </head>
 
   <body>
+    <div class="stars"></div>
     <div class="animated-bg"></div>
     <div class="bg-fade-overlay"></div>
     <div id="loading">
@@ -2009,7 +2085,7 @@
                     </div>
                 </div>
 
-    <a href="mailto:your.email@example.com" class="contact-button">
+    <a href="mailto:itsksaurabh@gmail.com" class="contact-button">
         <i class="fas fa-envelope"></i> Contact Me
     </a>
 
@@ -2282,6 +2358,55 @@
                     body.classList.remove('has-zoomed');
                 }
             });
+        });
+
+        // Starfield animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsContainer = document.querySelector('.stars');
+            const numStars = 50;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                const moveClass = 'move' + (1 + Math.floor(Math.random() * 5));
+                star.className = 'star ' + moveClass;
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.left = Math.random() * 100 + 'vw';
+                // Randomize twinkle duration and movement duration
+                const twinkleDuration = (3.5 + Math.random() * 2.5);
+                const driftDuration = (18 + Math.random() * 12);
+                star.style.animationDuration = `${twinkleDuration}s, ${driftDuration}s`;
+                star.style.opacity = 0.6 + Math.random() * 0.4;
+                // Randomize glow intensity
+                const maxGlow = 2 + Math.random() * 6; // 2px to 8px
+                const maxBlue = 1 + Math.random() * 4; // 1px to 5px
+                star.setAttribute('data-maxGlow', maxGlow);
+                star.setAttribute('data-maxBlue', maxBlue);
+                // Custom twinkle keyframes per star (using inline style for box-shadow)
+                star.style.setProperty('--maxGlow', maxGlow);
+                star.style.setProperty('--maxBlue', maxBlue);
+                starsContainer.appendChild(star);
+            }
+
+            // Shooting stars
+            function createShootingStar() {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                const startY = Math.random() * 80 + 5; // 5vh to 85vh
+                const startX = Math.random() * 60 + 10; // 10vw to 70vw
+                shootingStar.style.top = startY + 'vh';
+                shootingStar.style.left = startX + 'vw';
+                // Set custom properties for animation
+                const shootX = 400 + Math.random() * 200; // px
+                const shootY = 100 + Math.random() * 100; // px
+                shootingStar.style.setProperty('--shoot-x', shootX + 'px');
+                shootingStar.style.setProperty('--shoot-y', shootY + 'px');
+                starsContainer.appendChild(shootingStar);
+                setTimeout(() => {
+                    shootingStar.remove();
+                }, 1200);
+            }
+            setInterval(() => {
+                if (Math.random() < 0.3) createShootingStar();
+            }, 1500);
         });
     </script>
 </body>
