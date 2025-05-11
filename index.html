@@ -2,16 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kumar Saurabh</title>
-    <meta name="description" content="Golang Developer, DevOps Engineer, Freelancer">
-    <meta name="keywords" content="Go Developer, Golang Developer, DevOps, DevOps Engineer, Freelancer, Go, Golang, Kubernetes, Docker, GRPC, Terraform, Helm, HTML, CSS, JavaScript">
+    <title>Kumar Saurabh | Golang Developer, DevOps Engineer, Cloud Architect</title>
+    <meta name="description" content="Kumar Saurabh is a top Golang Developer, DevOps Engineer, Cloud Architect, and Engineering Leader. 8+ years building scalable backend systems, Kubernetes, AWS, Blockchain, Web3, and cloud-native technologies. Available for consulting and freelance.">
+    <meta name="keywords" content="Golang Developer, Go Developer, DevOps Engineer, Cloud Architect, Kubernetes, AWS, Backend Developer, Freelancer, Cloud Native, Infrastructure, SRE, Site Reliability Engineer, Terraform, Helm, Docker, GRPC, Consultant, Remote Engineer, Engineering Leader, Open Source, CNCF, Blockchain, Web3, Technical Strategy, Team Leadership, Cloud Platforms, System Design, Serverless, Event-Driven, Distributed Systems, Performance Optimization, Security, Monitoring, Observability, Databases, CI/CD, GitOps, Ansible, Prometheus, Grafana, Ethereum, Smart Contracts, Solidity, Game Server, Metaverse, Leadership">
     <meta name="author" content="Kumar Saurabh">
-    <meta property="og:image" content="https://avatars2.githubusercontent.com/u/14794708?v=4" />
-    <meta property='og:title' content="Golang Developer, DevOps Engineer, Freelancer, Consultant"/>
-    <meta property='og:description' content="I mostly work with Golang and Cloud-Native technologies!"/>
-    <meta property='og:url' content="https://www.kumar-saurabh.com" />
+    <meta property="og:title" content="Kumar Saurabh | Golang Developer, DevOps Engineer, Cloud Architect">
+    <meta property="og:description" content="Golang, DevOps, Cloud, and Blockchain expert. 8+ years building scalable systems. Available for consulting and freelance.">
+    <meta property="og:image" content="https://avatars2.githubusercontent.com/u/14794708?v=4">
+    <meta property="og:url" content="https://www.kumar-saurabh.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kumar Saurabh | Golang Developer, DevOps Engineer, Cloud Architect">
+    <meta name="twitter:description" content="Golang, DevOps, Cloud, and Blockchain expert. 8+ years building scalable systems. Available for consulting and freelance.">
+    <meta name="twitter:image" content="https://avatars2.githubusercontent.com/u/14794708?v=4">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kumar Saurabh",
+      "url": "https://www.kumar-saurabh.com",
+      "image": "https://avatars2.githubusercontent.com/u/14794708?v=4",
+      "sameAs": [
+        "https://github.com/itsksaurabh",
+        "https://www.linkedin.com/in/itsksaurabh/",
+        "https://twitter.com/itsksaurabh",
+        "https://itsksaurabh.medium.com/"
+      ],
+      "jobTitle": "Golang Developer, DevOps Engineer, Cloud Architect, Engineering Leader, Backend Developer, Blockchain & Web3 Specialist",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "knowsAbout": [
+        "Golang", "Go", "DevOps", "Cloud Architecture", "Kubernetes", "AWS", "Backend Development", "System Design", "Blockchain", "Web3", "Terraform", "Helm", "Docker", "SRE", "Site Reliability Engineering", "Technical Strategy", "Team Leadership", "Open Source", "CNCF", "Serverless", "Distributed Systems", "Performance Optimization", "Security", "Monitoring", "Observability", "Databases", "CI/CD", "GitOps", "Ansible", "Prometheus", "Grafana", "Ethereum", "Smart Contracts", "Solidity", "Game Server", "Metaverse", "Leadership"
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -35,6 +63,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
         }
 
         body {
@@ -1958,11 +1991,14 @@
                 padding: 1rem 0.2rem;
                 gap: 1rem;
                 background: rgba(0,0,0,0.2);
+                align-items: center;
+                scroll-snap-type: none !important;
+                touch-action: pan-y !important;
             }
             .floating-img {
                 position: static !important;
                 animation: none !important;
-                margin: 0.5rem auto;
+                margin: 0.5rem 0 !important;
                 flex: 0 0 auto;
                 max-width: 95vw;
                 width: 100%;
@@ -1970,6 +2006,8 @@
                 max-height: 220px;
                 border-radius: 16px;
                 display: block;
+                left: auto !important;
+                top: auto !important;
             }
         }
         @media (max-width: 400px) {
@@ -2466,25 +2504,27 @@
             const testimonials = document.querySelector('.testimonials');
             const body = document.body;
 
-            images.forEach(img => {
-                img.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isZoomed = img.classList.contains('zoomed');
-                    
-                    // Remove zoomed class from all images
-                    images.forEach(i => i.classList.remove('zoomed'));
-                    
-                    // Toggle zoom state
-                    if (!isZoomed) {
-                        img.classList.add('zoomed');
-                        testimonials.classList.add('has-zoomed');
-                        body.classList.add('has-zoomed');
-                    } else {
-                        testimonials.classList.remove('has-zoomed');
-                        body.classList.remove('has-zoomed');
-                    }
+            if (window.innerWidth > 900) { // Only enable zoom on desktop
+                images.forEach(img => {
+                    img.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const isZoomed = img.classList.contains('zoomed');
+                        
+                        // Remove zoomed class from all images
+                        images.forEach(i => i.classList.remove('zoomed'));
+                        
+                        // Toggle zoom state
+                        if (!isZoomed) {
+                            img.classList.add('zoomed');
+                            testimonials.classList.add('has-zoomed');
+                            body.classList.add('has-zoomed');
+                        } else {
+                            testimonials.classList.remove('has-zoomed');
+                            body.classList.remove('has-zoomed');
+                        }
+                    });
                 });
-            });
+            }
 
             // Close zoomed image when clicking outside
             testimonials.addEventListener('click', (e) => {
@@ -2554,5 +2594,21 @@
             }, 1500);
         });
     </script>
-</body>
+    <script>
+    window.addEventListener('load', function() {
+        var container = document.querySelector('.testimonials');
+        if (!container) return;
+        var images = Array.from(container.querySelectorAll('.floating-img'));
+        // Shuffle the images array
+        for (let i = images.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [images[i], images[j]] = [images[j], images[i]];
+        }
+        // Remove all images from container
+        images.forEach(img => container.removeChild(img));
+        // Re-append in shuffled order
+        images.forEach(img => container.appendChild(img));
+    });
+    </script>
+  </body>
 </html>
