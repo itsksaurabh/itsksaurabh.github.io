@@ -1837,6 +1837,151 @@
             80% { opacity: 1; }
             100% { opacity: 0; transform: translate(var(--shoot-x, 400px), var(--shoot-y, 100px)) scaleX(2.5) scaleY(0.7); }
         }
+        /* Responsive Design Fixes */
+        @media (max-width: 1024px) {
+            #home {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            .profile-section, .ide-section {
+                padding: 1rem;
+            }
+            .ide-container {
+                height: 60vh;
+                max-width: 100%;
+            }
+            .profile-image {
+                width: 140px;
+                height: 140px;
+            }
+            .name {
+                font-size: 2rem;
+            }
+            .title {
+                font-size: 1rem;
+            }
+            .social-links {
+                gap: 1rem;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+                padding: 0.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 0;
+            }
+            .tab-content {
+                margin-top: 3rem;
+                height: calc(100vh - 3rem);
+                padding: 0;
+            }
+            #home {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0 0.5rem;
+            }
+            .profile-section, .ide-section {
+                padding: 0.5rem;
+            }
+            .profile-image {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 1rem;
+            }
+            .name {
+                font-size: 1.2rem;
+            }
+            .title {
+                font-size: 0.8rem;
+            }
+            .ide-container {
+                height: 40vh;
+                font-size: 0.7rem;
+                padding: 0.2rem;
+            }
+            .ide-content {
+                padding: 0.1rem 0.5rem 0.1rem 0.2rem;
+                font-size: 0.7rem;
+            }
+            .social-links {
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .social-links a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                padding: 0.3rem;
+            }
+            .contact-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 1rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .testimonials {
+                padding: 0.5rem 0.1rem;
+                min-height: 60vh;
+                height: auto;
+            }
+            .floating-img {
+                max-width: 180px;
+                max-height: 180px;
+                margin: 0 0.2rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .floating-img {
+                max-width: 120px;
+                max-height: 120px;
+            }
+            .testimonials {
+                min-height: 50vh;
+            }
+        }
+        @media (max-width: 900px) {
+            .testimonials {
+                display: flex !important;
+                flex-direction: column !important;
+                flex-wrap: nowrap;
+                overflow-y: auto;
+                overflow-x: hidden;
+                position: static !important;
+                min-height: 60vh;
+                max-height: 80vh;
+                height: auto;
+                padding: 1rem 0.2rem;
+                gap: 1rem;
+                background: rgba(0,0,0,0.2);
+            }
+            .floating-img {
+                position: static !important;
+                animation: none !important;
+                margin: 0.5rem auto;
+                flex: 0 0 auto;
+                max-width: 95vw;
+                width: 100%;
+                height: auto;
+                max-height: 220px;
+                border-radius: 16px;
+                display: block;
+            }
+        }
+        @media (max-width: 400px) {
+            .floating-img {
+                max-width: 98vw;
+                max-height: 140px;
+            }
+            .testimonials {
+                min-height: 50vh;
+                max-height: 70vh;
+            }
+        }
     </style>
     <link rel="icon" href="https://avatars2.githubusercontent.com/u/14794708?v=4" type="image/png">
 </head>
