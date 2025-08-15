@@ -693,99 +693,88 @@
             font-size: 1.2rem;
         }
 
-        /* Testimonials Section */
-        .testimonials-header {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
-        }
-
-        .testimonials-close-btn {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        /* Original Testimonials Section */
+        .testimonials {
             display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            height: calc(100vh - 200px);
             align-items: center;
-            justify-content: center;
+            margin-top: 80px; /* Add space for navbar */
         }
 
-        .testimonials-close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+        .testimonials::-webkit-scrollbar {
+            display: none;
         }
 
-        .testimonials-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00b4ff, #0066ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .testimonials-header p {
-            font-size: 1.2rem;
-            color: #888;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .testimonials-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+        .floating-img {
+            flex: 0 0 auto;
+            max-width: none;
+            scroll-snap-align: center;
+            background: transparent;
+            border-radius: 15px;
             overflow: hidden;
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-            z-index: 1000;
-        }
-
-        .testimonials-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 180, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            animation: background-float 30s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes background-float {
-            0%, 100% {
-                transform: translateX(0px) translateY(0px) rotate(0deg);
-            }
-            25% {
-                transform: translateX(50px) translateY(-30px) rotate(2deg);
-            }
-            50% {
-                transform: translateX(-30px) translateY(40px) rotate(-1deg);
-            }
-            75% {
-                transform: translateX(40px) translateY(20px) rotate(1deg);
-            }
-        }
-
-        .testimonials-grid {
+            border: none;
+            transition: all 0.3s ease;
             position: relative;
+            height: auto;
+            display: block;
+            box-shadow: 0 0 20px rgba(0, 180, 255, 0.3), 0 0 40px rgba(0, 102, 255, 0.2);
+        }
+
+        .floating-img img {
             width: 100%;
             height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-img:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 768px) {
+            .floating-img {
+                flex: 0 0 70%;
+                max-width: 70%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .floating-img {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Add touch-friendly scrolling */
+        .testimonials {
+            touch-action: pan-x;
+            cursor: grab;
+        }
+
+        .testimonials:active {
+            cursor: grabbing;
+        }
+
+        /* Add zoom overlay */
+        .floating-img::after {
+            content: '🔍';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .floating-img:hover::after {
+            opacity: 1;
         }
 
         .testimonial-card {
@@ -1198,29 +1187,41 @@
         }
 
         /* Responsive cloud floating */
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .floating-testimonial {
+                width: 160px;
+                height: 120px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .testimonial-card {
-                width: 150px;
-                height: 112px;
-                animation-duration: 15s !important;
+            .floating-testimonial {
+                width: 140px;
+                height: 105px;
             }
             
-            .testimonials-header {
-                top: 10px;
-                right: 10px;
+            .testimonials-close-btn {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .testimonial-card {
+            .floating-testimonial {
                 width: 120px;
                 height: 90px;
-                animation-duration: 12s !important;
             }
             
-            .testimonials-header {
-                top: 5px;
-                right: 5px;
+            .testimonials-close-btn {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
             }
         }
 
@@ -3874,25 +3875,21 @@
             </div>
             
             <section id="testimonials" class="tab-pane">
-                <div class="testimonials-header">
-                    <button class="testimonials-close-btn" onclick="closeTestimonials()">×</button>
-                </div>
-                
-                <div class="testimonials-container">
-                    <img src="assets/Testimonials/t1.png" alt="Testimonial 1" class="floating-img float-1" loading="lazy">
-                    <img src="assets/Testimonials/t2.png" alt="Testimonial 2" class="floating-img float-2" loading="lazy">
-                    <img src="assets/Testimonials/t3.png" alt="Testimonial 3" class="floating-img float-3" loading="lazy">
-                    <img src="assets/Testimonials/t4.png" alt="Testimonial 4" class="floating-img float-4" loading="lazy">
-                    <img src="assets/Testimonials/t5.png" alt="Testimonial 5" class="floating-img float-5" loading="lazy">
-                    <img src="assets/Testimonials/t6.png" alt="Testimonial 6" class="floating-img float-6" loading="lazy">
-                    <img src="assets/Testimonials/t7.png" alt="Testimonial 7" class="floating-img float-7" loading="lazy">
-                    <img src="assets/Testimonials/t8.png" alt="Testimonial 8" class="floating-img float-8" loading="lazy">
-                    <img src="assets/Testimonials/t9.png" alt="Testimonial 9" class="floating-img float-9" loading="lazy">
-                    <img src="assets/Testimonials/10.png" alt="Testimonial 10" class="floating-img float-10" loading="lazy">
-                    <img src="assets/Testimonials/11.png" alt="Testimonial 11" class="floating-img float-11" loading="lazy">
-                    <img src="assets/Testimonials/12.png" alt="Testimonial 12" class="floating-img float-12" loading="lazy">
-                    <img src="assets/Testimonials/13.png" alt="Testimonial 13" class="floating-img float-13" loading="lazy">
-                    <img src="assets/Testimonials/14.png" alt="Testimonial 14" class="floating-img float-14" loading="lazy">
+                <div class="testimonials">
+                    <img src="assets/Testimonials/t1.png" alt="Testimonial 1" class="floating-img float-1">
+                    <img src="assets/Testimonials/t2.png" alt="Testimonial 2" class="floating-img float-2">
+                    <img src="assets/Testimonials/t3.png" alt="Testimonial 3" class="floating-img float-3">
+                    <img src="assets/Testimonials/t4.png" alt="Testimonial 4" class="floating-img float-4">
+                    <img src="assets/Testimonials/t5.png" alt="Testimonial 5" class="floating-img float-5">
+                    <img src="assets/Testimonials/t6.png" alt="Testimonial 6" class="floating-img float-6">
+                    <img src="assets/Testimonials/t7.png" alt="Testimonial 7" class="floating-img float-7">
+                    <img src="assets/Testimonials/t8.png" alt="Testimonial 8" class="floating-img float-8">
+                    <img src="assets/Testimonials/t9.png" alt="Testimonial 9" class="floating-img float-9">
+                    <img src="assets/Testimonials/10.png" alt="Testimonial 10" class="floating-img float-10">
+                    <img src="assets/Testimonials/11.png" alt="Testimonial 11" class="floating-img float-11">
+                    <img src="assets/Testimonials/12.png" alt="Testimonial 12" class="floating-img float-12">
+                    <img src="assets/Testimonials/13.png" alt="Testimonial 13" class="floating-img float-13">
+                    <img src="assets/Testimonials/14.png" alt="Testimonial 14" class="floating-img float-14">
                 </div>
             </section>
 
@@ -3952,17 +3949,17 @@
     <script>
         // Enhanced floating testimonials functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const floatingImages = document.querySelectorAll('.floating-img');
+            const floatingTestimonials = document.querySelectorAll('.floating-testimonial');
             
             // Add click functionality to open testimonials in lightbox
-            floatingImages.forEach(img => {
+            floatingTestimonials.forEach(img => {
                 img.addEventListener('click', function() {
                     openLightbox(this.src, this.alt);
                 });
             });
             
             // Add mouse interaction for more dynamic movement
-            floatingImages.forEach(img => {
+            floatingTestimonials.forEach(img => {
                 img.addEventListener('mouseenter', function() {
                     this.style.animationPlayState = 'paused';
                     this.style.transform = 'scale(1.1) rotate(5deg)';
