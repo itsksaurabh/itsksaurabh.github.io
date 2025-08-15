@@ -695,9 +695,40 @@
 
         /* Testimonials Section */
         .testimonials-header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 0 1rem;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 40px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonials-close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonials-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         .testimonials-header h2 {
@@ -717,34 +748,233 @@
         }
 
         .testimonials-container {
-            padding: 0 1rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            z-index: 1000;
+        }
+
+        .testimonials-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 180, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: background-float 30s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes background-float {
+            0%, 100% {
+                transform: translateX(0px) translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateX(50px) translateY(-30px) rotate(2deg);
+            }
+            50% {
+                transform: translateX(-30px) translateY(40px) rotate(-1deg);
+            }
+            75% {
+                transform: translateX(40px) translateY(20px) rotate(1deg);
+            }
         }
 
         .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            position: absolute;
+            width: 200px;
+            height: 150px;
+            background: transparent;
+            border-radius: 0;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: none;
+            backdrop-filter: none;
             transition: all 0.3s ease;
-            position: relative;
-            aspect-ratio: 16/9;
             cursor: pointer;
+            animation: cloud-float 20s ease-in-out infinite;
+            opacity: 0.8;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Random cloud-like floating for each testimonial */
+        .testimonial-card:nth-child(1) { 
+            top: 10%; left: 5%; animation-delay: 0s; animation-duration: 25s; 
+            animation-name: cloud-float-1;
+        }
+        .testimonial-card:nth-child(2) { 
+            top: 20%; left: 80%; animation-delay: 2s; animation-duration: 30s; 
+            animation-name: cloud-float-2;
+        }
+        .testimonial-card:nth-child(3) { 
+            top: 60%; left: 15%; animation-delay: 4s; animation-duration: 28s; 
+            animation-name: cloud-float-3;
+        }
+        .testimonial-card:nth-child(4) { 
+            top: 30%; left: 70%; animation-delay: 6s; animation-duration: 32s; 
+            animation-name: cloud-float-4;
+        }
+        .testimonial-card:nth-child(5) { 
+            top: 70%; left: 60%; animation-delay: 8s; animation-duration: 26s; 
+            animation-name: cloud-float-5;
+        }
+        .testimonial-card:nth-child(6) { 
+            top: 15%; left: 40%; animation-delay: 10s; animation-duration: 29s; 
+            animation-name: cloud-float-6;
+        }
+        .testimonial-card:nth-child(7) { 
+            top: 80%; left: 25%; animation-delay: 12s; animation-duration: 27s; 
+            animation-name: cloud-float-7;
+        }
+        .testimonial-card:nth-child(8) { 
+            top: 45%; left: 85%; animation-delay: 14s; animation-duration: 31s; 
+            animation-name: cloud-float-8;
+        }
+        .testimonial-card:nth-child(9) { 
+            top: 25%; left: 20%; animation-delay: 16s; animation-duration: 24s; 
+            animation-name: cloud-float-9;
+        }
+        .testimonial-card:nth-child(10) { 
+            top: 85%; left: 75%; animation-delay: 18s; animation-duration: 33s; 
+            animation-name: cloud-float-10;
+        }
+        .testimonial-card:nth-child(11) { 
+            top: 50%; left: 50%; animation-delay: 20s; animation-duration: 26s; 
+            animation-name: cloud-float-11;
+        }
+        .testimonial-card:nth-child(12) { 
+            top: 35%; left: 10%; animation-delay: 22s; animation-duration: 28s; 
+            animation-name: cloud-float-12;
+        }
+        .testimonial-card:nth-child(13) { 
+            top: 75%; left: 90%; animation-delay: 24s; animation-duration: 30s; 
+            animation-name: cloud-float-13;
+        }
+        .testimonial-card:nth-child(14) { 
+            top: 90%; left: 35%; animation-delay: 26s; animation-duration: 25s; 
+            animation-name: cloud-float-14;
+        }
+
+        /* Cloud-like floating animations */
+        @keyframes cloud-float-1 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            20% { transform: translate(30px, -20px) rotate(2deg) scale(1.05); }
+            40% { transform: translate(-15px, 25px) rotate(-1deg) scale(0.95); }
+            60% { transform: translate(25px, 15px) rotate(1deg) scale(1.02); }
+            80% { transform: translate(-20px, -30px) rotate(-2deg) scale(0.98); }
+        }
+
+        @keyframes cloud-float-2 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            25% { transform: translate(-40px, 20px) rotate(-3deg) scale(1.03); }
+            50% { transform: translate(20px, -25px) rotate(2deg) scale(0.97); }
+            75% { transform: translate(-30px, -15px) rotate(-1deg) scale(1.04); }
+        }
+
+        @keyframes cloud-float-3 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            30% { transform: translate(35px, 30px) rotate(3deg) scale(1.06); }
+            60% { transform: translate(-25px, -20px) rotate(-2deg) scale(0.94); }
+            90% { transform: translate(15px, 25px) rotate(1deg) scale(1.01); }
+        }
+
+        @keyframes cloud-float-4 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            15% { transform: translate(-30px, -25px) rotate(-2deg) scale(0.96); }
+            45% { transform: translate(40px, 15px) rotate(3deg) scale(1.05); }
+            75% { transform: translate(-20px, 30px) rotate(-1deg) scale(0.99); }
+        }
+
+        @keyframes cloud-float-5 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            20% { transform: translate(25px, -30px) rotate(2deg) scale(1.02); }
+            50% { transform: translate(-35px, 20px) rotate(-3deg) scale(0.98); }
+            80% { transform: translate(30px, 25px) rotate(1deg) scale(1.03); }
+        }
+
+        @keyframes cloud-float-6 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            25% { transform: translate(-20px, 35px) rotate(-1deg) scale(1.04); }
+            50% { transform: translate(30px, -15px) rotate(2deg) scale(0.97); }
+            75% { transform: translate(-25px, -30px) rotate(-2deg) scale(1.01); }
+        }
+
+        @keyframes cloud-float-7 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            30% { transform: translate(40px, 20px) rotate(3deg) scale(1.05); }
+            60% { transform: translate(-30px, -25px) rotate(-2deg) scale(0.95); }
+            90% { transform: translate(20px, 30px) rotate(1deg) scale(1.02); }
+        }
+
+        @keyframes cloud-float-8 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            20% { transform: translate(-35px, -20px) rotate(-2deg) scale(0.98); }
+            50% { transform: translate(25px, 35px) rotate(2deg) scale(1.03); }
+            80% { transform: translate(-20px, 15px) rotate(-1deg) scale(0.99); }
+        }
+
+        @keyframes cloud-float-9 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            25% { transform: translate(30px, -25px) rotate(2deg) scale(1.01); }
+            50% { transform: translate(-40px, 20px) rotate(-3deg) scale(0.97); }
+            75% { transform: translate(35px, 30px) rotate(1deg) scale(1.04); }
+        }
+
+        @keyframes cloud-float-10 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            15% { transform: translate(-25px, 35px) rotate(-1deg) scale(1.02); }
+            45% { transform: translate(30px, -20px) rotate(2deg) scale(0.96); }
+            75% { transform: translate(-30px, -30px) rotate(-2deg) scale(1.03); }
+        }
+
+        @keyframes cloud-float-11 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            30% { transform: translate(35px, 25px) rotate(3deg) scale(1.05); }
+            60% { transform: translate(-25px, -35px) rotate(-2deg) scale(0.94); }
+            90% { transform: translate(40px, 15px) rotate(1deg) scale(1.01); }
+        }
+
+        @keyframes cloud-float-12 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            20% { transform: translate(-30px, -25px) rotate(-2deg) scale(0.98); }
+            50% { transform: translate(25px, 30px) rotate(2deg) scale(1.02); }
+            80% { transform: translate(-35px, 20px) rotate(-1deg) scale(0.99); }
+        }
+
+        @keyframes cloud-float-13 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            25% { transform: translate(40px, -20px) rotate(3deg) scale(1.03); }
+            50% { transform: translate(-20px, 35px) rotate(-2deg) scale(0.97); }
+            75% { transform: translate(30px, 25px) rotate(1deg) scale(1.04); }
+        }
+
+        @keyframes cloud-float-14 {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            15% { transform: translate(-35px, 30px) rotate(-1deg) scale(1.01); }
+            45% { transform: translate(30px, -25px) rotate(2deg) scale(0.95); }
+            75% { transform: translate(-25px, -20px) rotate(-3deg) scale(1.02); }
         }
 
         .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 180, 255, 0.3);
-            border-color: rgba(0, 180, 255, 0.5);
+            transform: scale(1.1);
+            opacity: 1;
+            filter: drop-shadow(0 15px 30px rgba(0, 180, 255, 0.4));
+            animation-play-state: paused;
+            z-index: 10;
         }
 
         .testimonial-image {
@@ -762,6 +992,8 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .testimonial-card:hover .testimonial-image img {
@@ -779,10 +1011,111 @@
             transition: opacity 0.3s ease;
             pointer-events: none;
             z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .testimonial-card:hover::after {
             opacity: 1;
+        }
+
+        /* Zoom Modal Styles */
+        .zoom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10002;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .zoom-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .zoom-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .zoom-modal.active .zoom-content {
+            transform: scale(1);
+        }
+
+        .zoom-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .zoom-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Responsive zoom modal */
+        @media (max-width: 768px) {
+            .zoom-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+            
+            .zoom-close {
+                top: -40px;
+                right: -10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .zoom-content {
+                max-width: 98%;
+                max-height: 98%;
+            }
+            
+            .zoom-close {
+                top: -35px;
+                right: -5px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
         }
 
         /* Responsive Design */
@@ -824,10 +1157,48 @@
 
             .testimonial-card {
                 aspect-ratio: 3/2;
+                animation-duration: 3s !important;
             }
 
             .testimonials-container {
                 padding: 0 0.5rem;
+            }
+        }
+
+        /* Reduce floating intensity on smaller screens */
+        @media (max-width: 768px) {
+            .testimonial-card {
+                animation-duration: 4s !important;
+            }
+            
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px) translateX(0px) rotate(0deg);
+                }
+                25% {
+                    transform: translateY(-8px) translateX(3px) rotate(0.5deg);
+                }
+                50% {
+                    transform: translateY(-5px) translateX(-2px) rotate(-0.3deg);
+                }
+                75% {
+                    transform: translateY(-10px) translateX(4px) rotate(0.4deg);
+                }
+            }
+
+            @keyframes float-reverse {
+                0%, 100% {
+                    transform: translateY(0px) translateX(0px) rotate(0deg);
+                }
+                25% {
+                    transform: translateY(-6px) translateX(-3px) rotate(-0.5deg);
+                }
+                50% {
+                    transform: translateY(-9px) translateX(2px) rotate(0.3deg);
+                }
+                75% {
+                    transform: translateY(-5px) translateX(-4px) rotate(-0.4deg);
+                }
             }
         }
 
@@ -3126,7 +3497,7 @@
                         <a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/itsksaurabh" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://itsksaurabh.medium.com/" target="_blank"><i class="fab fa-medium"></i></a>
-                    </div>
+                </div>
                 </div>
                 <div class="ide-section">
                     <div class="ide-container">
@@ -3135,7 +3506,7 @@
                             <button class="ide-button minimize"></button>
                             <button class="ide-button maximize"></button>
                             <span class="ide-title">profile.go</span>
-                        </div>
+    </div>
                         <div class="ide-content">
                             <div class="code-line"><span class="code-keyword">package</span> <span class="code-function">main</span></div>
                             <div class="code-line"></div>
@@ -3340,7 +3711,7 @@
                                     in guiding teams, shaping technical strategies, and improving system performance. Continuously motivated to learn and stay at the forefront 
                                     of technology, I am committed to building systems that power millions of users securely and efficiently that drive business success.
                                 </p>
-                            </div>
+                    </div>
                             <div class="resume-hero-actions">
                                 <button class="resume-hero-btn primary" onclick="downloadResume()">
                                     <i class="fas fa-download"></i>
@@ -3350,8 +3721,8 @@
                                     <i class="fas fa-external-link-alt"></i>
                                     <span>Open in New Tab</span>
                                 </button>
-                            </div>
-                        </div>
+                    </div>
+                </div>
                         <div class="resume-hero-visual">
                             <div class="resume-preview-card">
                                 <div class="resume-preview-header">
@@ -3484,96 +3855,64 @@
                 <div class="testimonials-header">
                     <h2>Client Testimonials</h2>
                     <p>What people say about working with me</p>
+                    <button class="testimonials-close-btn" onclick="closeTestimonials()">×</button>
                 </div>
                 
                 <div class="testimonials-container">
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t1.png" alt="Testimonial 1" loading="lazy">
-                            </div>
+                    <div class="floating-testimonials">
+                        <div class="floating-testimonial" data-speed="1">
+                            <img src="assets/Testimonials/t1.png" alt="Testimonial 1" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t2.png" alt="Testimonial 2" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.2">
+                            <img src="assets/Testimonials/t2.png" alt="Testimonial 2" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t3.png" alt="Testimonial 3" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="0.8">
+                            <img src="assets/Testimonials/t3.png" alt="Testimonial 3" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t4.png" alt="Testimonial 4" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.5">
+                            <img src="assets/Testimonials/t4.png" alt="Testimonial 4" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t5.png" alt="Testimonial 5" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="0.9">
+                            <img src="assets/Testimonials/t5.png" alt="Testimonial 5" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t6.png" alt="Testimonial 6" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.3">
+                            <img src="assets/Testimonials/t6.png" alt="Testimonial 6" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t7.png" alt="Testimonial 7" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="0.7">
+                            <img src="assets/Testimonials/t7.png" alt="Testimonial 7" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t8.png" alt="Testimonial 8" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.1">
+                            <img src="assets/Testimonials/t8.png" alt="Testimonial 8" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/t9.png" alt="Testimonial 9" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="0.6">
+                            <img src="assets/Testimonials/t9.png" alt="Testimonial 9" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/10.png" alt="Testimonial 10" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.4">
+                            <img src="assets/Testimonials/10.png" alt="Testimonial 10" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/11.png" alt="Testimonial 11" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="0.5">
+                            <img src="assets/Testimonials/11.png" alt="Testimonial 11" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/12.png" alt="Testimonial 12" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.6">
+                            <img src="assets/Testimonials/12.png" alt="Testimonial 12" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/13.png" alt="Testimonial 13" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="0.4">
+                            <img src="assets/Testimonials/13.png" alt="Testimonial 13" loading="lazy">
                         </div>
-                        
-                        <div class="testimonial-card">
-                            <div class="testimonial-image">
-                                <img src="assets/Testimonials/14.png" alt="Testimonial 14" loading="lazy">
-                            </div>
+                        <div class="floating-testimonial" data-speed="1.7">
+                            <img src="assets/Testimonials/14.png" alt="Testimonial 14" loading="lazy">
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- Zoom Modal -->
+            <div class="zoom-modal" id="zoomModal">
+                <div class="zoom-content">
+                    <button class="zoom-close" onclick="closeZoomModal()">×</button>
+                    <img class="zoom-image" id="zoomImage" src="" alt="Zoomed Testimonial">
+                </div>
+            </div>
 
     <a href="mailto:itsksaurabh@gmail.com" class="contact-button">
         <i class="fas fa-envelope"></i> Contact Me
@@ -3604,15 +3943,15 @@
                           <div class="section_title">${blog[i].title}</div>
                           <div class="about_section">
                               ${blog[i].sub_title}
-                                              </div>
-                </div>
+                          </div>
+                      </div>
                 
                 <!-- Real-Time SEO Score Section -->
                 <div class="seo-score-section" style="margin-top: 2rem; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
                     <h2 style="text-align: center; margin-bottom: 1.5rem; color: #00b4ff; font-size: 1.8rem;">🚀 Real-Time SEO Performance</h2>
                     <div id="real-seo-container"></div>
-                </div>
-            </section>
+                      </div>
+                  </section>
               </a>
               `);
           }
@@ -3621,13 +3960,13 @@
         });
       </script>
     <script>
-        // Enhanced testimonials functionality
+        // Enhanced floating testimonials functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const floatingTestimonials = document.querySelectorAll('.floating-testimonial');
             
             // Add click functionality to open testimonials in lightbox
-            testimonialCards.forEach(card => {
-                card.addEventListener('click', function() {
+            floatingTestimonials.forEach(testimonial => {
+                testimonial.addEventListener('click', function() {
                     const img = this.querySelector('img');
                     if (img) {
                         openLightbox(img.src, img.alt);
@@ -3635,24 +3974,32 @@
                 });
             });
             
-            // Add intersection observer for animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+            // Add random movement to testimonials
+            floatingTestimonials.forEach((testimonial, index) => {
+                // Set random initial positions
+                const randomX = Math.random() * 80; // 0-80%
+                const randomY = Math.random() * 80; // 0-80%
+                testimonial.style.left = randomX + '%';
+                testimonial.style.top = randomY + '%';
+                
+                // Add random floating animation
+                const duration = 15 + Math.random() * 10; // 15-25 seconds
+                const delay = Math.random() * 5; // 0-5 seconds delay
+                testimonial.style.animation = `float${index + 1} ${duration}s ease-in-out infinite`;
+                testimonial.style.animationDelay = delay + 's';
             });
             
-            testimonialCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
+            // Add mouse interaction for more dynamic movement
+            floatingTestimonials.forEach(testimonial => {
+                testimonial.addEventListener('mouseenter', function() {
+                    this.style.animationPlayState = 'paused';
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                });
+                
+                testimonial.addEventListener('mouseleave', function() {
+                    this.style.animationPlayState = 'running';
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                });
             });
         });
         
@@ -3977,6 +4324,69 @@
                 url: window.location.href
             });
         });
+    </script>
+
+    <!-- Testimonial Zoom Functionality -->
+    <script>
+        // Add click event listeners to testimonial cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            testimonialCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    if (img) {
+                        openZoomModal(img.src, img.alt);
+                    }
+                });
+            });
+        });
+
+        // Open zoom modal
+        function openZoomModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('zoomModal');
+            const zoomImage = document.getElementById('zoomImage');
+            
+            zoomImage.src = imageSrc;
+            zoomImage.alt = imageAlt;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        // Close zoom modal
+        function closeZoomModal() {
+            const modal = document.getElementById('zoomModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside the image
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('zoomModal');
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeZoomModal();
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeZoomModal();
+                closeTestimonials();
+            }
+        });
+
+        // Close testimonials function
+        function closeTestimonials() {
+            const testimonialsSection = document.getElementById('testimonials');
+            if (testimonialsSection) {
+                testimonialsSection.style.display = 'none';
+            }
+        }
     </script>
     
     <!-- SEO Footer with Additional Content -->
