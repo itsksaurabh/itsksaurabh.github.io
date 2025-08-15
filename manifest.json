@@ -1,0 +1,29 @@
+{
+  "name": "Kumar Saurabh - Engineering Lead & Golang Developer",
+  "short_name": "Kumar Saurabh",
+  "description": "Senior Engineering Lead and Golang Developer with 8+ years experience in building scalable backend systems, cloud architecture, and leading engineering teams.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00b4ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://avatars2.githubusercontent.com/u/14794708?v=4",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://avatars2.githubusercontent.com/u/14794708?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["technology", "business", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
