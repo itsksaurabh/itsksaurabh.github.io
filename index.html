@@ -168,7 +168,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#00b4ff">
     <meta name="msapplication-TileColor" content="#00b4ff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Kumar Saurabh">
     
@@ -4368,23 +4368,25 @@
                             
                             // Auto-adjust to fit perfectly in screen
                             setTimeout(() => {
-                                const rect = img.getBoundingClientRect();
-                                const screenWidth = window.innerWidth;
-                                const screenHeight = window.innerHeight;
-                                
-                                let scale = 1.02;
-                                let translateX = -50;
-                                let translateY = -50;
-                                
-                                // Calculate the maximum scale that fits the image in the screen
-                                const maxWidthScale = (screenWidth * 0.8) / rect.width;
-                                const maxHeightScale = (screenHeight * 0.8) / rect.height;
-                                
-                                // Use the smaller scale to ensure image fits both width and height
-                                scale = Math.min(maxWidthScale, maxHeightScale, 1.02);
-                                
-                                // Apply auto-adjusted transform
-                                img.style.transform = `translate(${translateX}%, ${translateY}%) scale(${scale})`;
+                                if (img && img.getBoundingClientRect) {
+                                    const rect = img.getBoundingClientRect();
+                                    const screenWidth = window.innerWidth;
+                                    const screenHeight = window.innerHeight;
+                                    
+                                    let scale = 1.02;
+                                    let translateX = -50;
+                                    let translateY = -50;
+                                    
+                                    // Calculate the maximum scale that fits the image in the screen
+                                    const maxWidthScale = (screenWidth * 0.8) / rect.width;
+                                    const maxHeightScale = (screenHeight * 0.8) / rect.height;
+                                    
+                                    // Use the smaller scale to ensure image fits both width and height
+                                    scale = Math.min(maxWidthScale, maxHeightScale, 1.02);
+                                    
+                                    // Apply auto-adjusted transform
+                                    img.style.transform = `translate(${translateX}%, ${translateY}%) scale(${scale})`;
+                                }
                             }, 50);
                             
                             img.classList.add('zoomed');

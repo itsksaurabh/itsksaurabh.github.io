@@ -663,21 +663,33 @@ class RealTimeSEOTracker {
     }
     
     showLoading() {
-        document.getElementById('seo-loading').style.display = 'block';
-        document.getElementById('seo-content').style.display = 'none';
-        document.getElementById('seo-error').style.display = 'none';
+        const loadingEl = document.getElementById('seo-loading');
+        const contentEl = document.getElementById('seo-content');
+        const errorEl = document.getElementById('seo-error');
+        
+        if (loadingEl) loadingEl.style.display = 'block';
+        if (contentEl) contentEl.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'none';
     }
     
     hideLoading() {
-        document.getElementById('seo-loading').style.display = 'none';
-        document.getElementById('seo-content').style.display = 'block';
-        document.getElementById('seo-error').style.display = 'none';
+        const loadingEl = document.getElementById('seo-loading');
+        const contentEl = document.getElementById('seo-content');
+        const errorEl = document.getElementById('seo-error');
+        
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (contentEl) contentEl.style.display = 'block';
+        if (errorEl) errorEl.style.display = 'none';
     }
     
     showError() {
-        document.getElementById('seo-loading').style.display = 'none';
-        document.getElementById('seo-content').style.display = 'none';
-        document.getElementById('seo-error').style.display = 'block';
+        const loadingEl = document.getElementById('seo-loading');
+        const contentEl = document.getElementById('seo-content');
+        const errorEl = document.getElementById('seo-error');
+        
+        if (loadingEl) loadingEl.style.display = 'none';
+        if (contentEl) contentEl.style.display = 'none';
+        if (errorEl) errorEl.style.display = 'block';
     }
     
     updateDisplay() {
