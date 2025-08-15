@@ -3393,9 +3393,15 @@
                           <div class="section_title">${blog[i].title}</div>
                           <div class="about_section">
                               ${blog[i].sub_title}
-                          </div>
-                      </div>
-                  </section>
+                                              </div>
+                </div>
+                
+                <!-- Real-Time SEO Score Section -->
+                <div class="seo-score-section" style="margin-top: 2rem; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h2 style="text-align: center; margin-bottom: 1.5rem; color: #00b4ff; font-size: 1.8rem;">🚀 Real-Time SEO Performance</h2>
+                    <div id="real-seo-container"></div>
+                </div>
+            </section>
               </a>
               `);
           }
@@ -3743,6 +3749,19 @@
         // Initialize rotating skills when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             initRotatingSkills();
+        });
+    </script>
+    
+    <!-- Real-Time SEO Tracker -->
+    <script src="real-seo-tracker.js"></script>
+    <script>
+        // Initialize real-time SEO tracker
+        document.addEventListener('DOMContentLoaded', function() {
+            new RealTimeSEOTracker('real-seo-container', {
+                autoRefresh: true,
+                refreshInterval: 300000, // 5 minutes
+                url: window.location.href
+            });
         });
     </script>
     
