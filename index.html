@@ -1977,6 +1977,734 @@
                 min-height: 50vh;
             }
         }
+
+        /* Resume Styles */
+        .resume-container {
+            height: 100%;
+            overflow-y: auto;
+            padding: 0;
+            background: transparent;
+        }
+
+        .resume-hero {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 180, 255, 0.1), rgba(0, 102, 255, 0.1));
+            border-radius: 30px;
+            margin: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300b4ff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .resume-hero-content {
+            flex: 1;
+            z-index: 2;
+            position: relative;
+        }
+
+        .resume-hero-text {
+            margin-bottom: 2rem;
+        }
+
+        .resume-hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 12px #fff, 0 0 32px #fff8, 0 0 48px #fff4, 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .resume-hero-subtitle {
+            font-size: 1.2rem;
+            color: #00b4ff;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-align: left;
+            text-shadow: 0 0 8px rgba(0, 180, 255, 0.4);
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .resume-hero-description {
+            font-size: 1.1rem;
+            color: #fff;
+            line-height: 1.8;
+            max-width: 600px;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .resume-hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-hero-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .resume-hero-btn:hover::before {
+            left: 100%;
+        }
+
+        .resume-hero-btn.primary {
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--text-primary);
+            box-shadow: 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+        }
+
+        .resume-hero-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .resume-hero-btn:hover {
+            transform: translateY(-8px) scale(1.12);
+            box-shadow: 0 0 24px #00b4ff, 0 0 48px #00b4ff88;
+        }
+
+        .resume-hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .resume-preview-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            width: 100%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .resume-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .preview-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .preview-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+
+        .preview-dots span:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .preview-dots span:nth-child(3) {
+            background: #27c93f;
+        }
+
+        .preview-title {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .resume-preview-content {
+            text-align: center;
+        }
+
+        .preview-avatar {
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-primary);
+            object-fit: cover;
+        }
+
+        .preview-info h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-info p {
+            color: var(--accent-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .preview-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .preview-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .highlight i {
+            color: var(--accent-primary);
+            width: 16px;
+            text-align: center;
+        }
+
+        .rotating-skills {
+            position: relative;
+            height: 200px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .skill-category {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+
+        .skill-category.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .skill-category h4 {
+            color: var(--accent-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-tags span {
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tags span:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 180, 255, 0.3);
+        }
+
+        .resume-viewer-section {
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+            border-radius: 30px;
+            margin: 2rem;
+        }
+
+        .resume-viewer-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .resume-viewer-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 12px #fff, 0 0 32px #fff8, 0 0 48px #fff4, 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: initial;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .resume-viewer-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .resume-viewer-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+            font-weight: 500;
+        }
+
+        .feature i {
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        .resume-viewer-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pdf-viewer-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .pdf-viewer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .pdf-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pdf-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pdf-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+
+        .pdf-dots span:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .pdf-dots span:nth-child(3) {
+            background: #27c93f;
+        }
+
+        .pdf-title {
+            color: #495057;
+            font-size: 0.9rem;
+            font-weight: 500;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+        }
+
+        .pdf-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .pdf-action-btn {
+            background: none;
+            border: none;
+            color: #6c757d;
+            padding: 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .pdf-action-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 0 12px #00b4ff, 0 0 24px #00b4ff44;
+        }
+
+        .pdf-viewer {
+            background: white;
+        }
+
+        .pdf-viewer {
+            background: white;
+        }
+
+        .pdf-viewer iframe {
+            border: none;
+            width: 100%;
+            height: 800px;
+            display: block;
+        }
+
+
+
+        /* Print styles */
+        @media print {
+            .resume-container {
+                background: none;
+                padding: 0;
+            }
+            
+            .resume-header {
+                display: none;
+            }
+            
+            .pdf-viewer {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        /* Responsive design for resume */
+        @media (max-width: 1024px) {
+            .resume-hero {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 3rem 1.5rem;
+            }
+            
+            .resume-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .resume-hero-actions {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                padding: 0;
+            }
+            
+            .resume-hero {
+                margin: 1rem;
+                padding: 2rem 1rem;
+            }
+            
+            .resume-hero-title {
+                font-size: 2rem;
+            }
+            
+            .resume-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .resume-hero-description {
+                font-size: 1rem;
+            }
+            
+            .resume-hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .resume-hero-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .resume-preview-card {
+                max-width: 100%;
+                padding: 1.5rem;
+            }
+            
+            .rotating-skills {
+                height: 180px;
+            }
+            
+            .skill-tags span {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.6rem;
+            }
+            
+            .preview-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .stat-number {
+                font-size: 1.2rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
+            }
+            
+            .pdf-viewer {
+                max-width: 100%;
+            }
+            
+            .pdf-viewer iframe {
+                height: 600px;
+            }
+            
+            .resume-viewer-section {
+                padding: 2rem 1rem;
+                margin: 1rem;
+            }
+            
+            .resume-viewer-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .resume-viewer-features {
+                gap: 2rem;
+            }
+            
+            .feature {
+                font-size: 0.9rem;
+            }
+            
+            .pdf-viewer-wrapper {
+                max-width: 100%;
+            }
+            
+            .pdf-viewer-header {
+                padding: 0.8rem 1rem;
+            }
+            
+            .pdf-title {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .resume-hero {
+                margin: 0.5rem;
+                padding: 1.5rem 1rem;
+            }
+            
+            .resume-hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .resume-hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .resume-hero-description {
+                font-size: 0.9rem;
+            }
+            
+            .resume-preview-card {
+                padding: 1rem;
+            }
+            
+            .rotating-skills {
+                height: 160px;
+            }
+            
+            .skill-category h4 {
+                font-size: 0.9rem;
+            }
+            
+            .skill-tags span {
+                font-size: 0.5rem;
+                padding: 0.15rem 0.5rem;
+            }
+            
+            .preview-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.3rem;
+            }
+            
+            .stat-number {
+                font-size: 1rem;
+            }
+            
+            .stat-label {
+                font-size: 0.6rem;
+            }
+            
+            .pdf-viewer iframe {
+                height: 500px;
+            }
+            
+            .resume-viewer-section {
+                padding: 1.5rem 0.5rem;
+                margin: 0.5rem;
+            }
+            
+            .resume-viewer-header h2 {
+                font-size: 2rem;
+            }
+            
+            .resume-viewer-features {
+                gap: 1.5rem;
+            }
+            
+            .feature {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resume-hero {
+                margin: 0.25rem;
+                padding: 1rem 0.5rem;
+            }
+            
+            .resume-hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .resume-hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .resume-hero-description {
+                font-size: 0.85rem;
+            }
+            
+            .resume-preview-card {
+                padding: 0.8rem;
+            }
+            
+            .rotating-skills {
+                height: 140px;
+            }
+            
+            .skill-category h4 {
+                font-size: 0.8rem;
+            }
+            
+            .skill-tags span {
+                font-size: 0.45rem;
+                padding: 0.1rem 0.4rem;
+            }
+            
+            .pdf-viewer iframe {
+                height: 400px;
+            }
+            
+            .resume-viewer-section {
+                padding: 1rem 0.25rem;
+                margin: 0.25rem;
+            }
+            
+            .resume-viewer-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature {
+                font-size: 0.75rem;
+            }
+        }
         @media (max-width: 900px) {
             .testimonials {
                 display: flex !important;
@@ -2035,6 +2763,7 @@
     <div class="container">
         <nav class="tab-nav">
             <button class="tab-button" data-target="#home">Home</button>
+            <button class="tab-button" data-target="#resume">About</button>
             <button class="tab-button" data-target="#testimonials">Testimonials</button>
         </nav>
 
@@ -2043,7 +2772,7 @@
                 <div class="profile-section">
                     <img src="https://avatars2.githubusercontent.com/u/14794708?v=4" alt="Kumar Saurabh" class="profile-image">
                     <h1 class="name">Kumar Saurabh</h1>
-                    <p class="title">Engineering Leader | DevOps Engineer | Cloud Architect | Backend Golang Developer</p>
+                    <p class="title">Engineering Leader | Backend Golang Engineer | DevOps Engineer | Cloud Architect </p>
                     <div class="social-links">
                         <a href="https://github.com/itsksaurabh" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/itsksaurabh/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -2249,6 +2978,160 @@
                     </div>
                         </div>
                       
+            <div id="resume" class="tab-pane">
+                <div class="resume-container">
+                    <div class="resume-hero">
+                        <div class="resume-hero-content">
+                            <div class="resume-hero-text">
+                                <h1 class="resume-hero-title">Kumar Saurabh</h1>
+                                <p class="resume-hero-subtitle">Engineering Leader | Backend Engineer | DevOps Engineer | Cloud Architect</p>
+                                <p class="resume-hero-description">
+                                    A hands-on Engineering Lead with 8+ years of experience, from building systems in startups to leading engineering teams for global platforms. 
+                                    Skilled in designing, building, and scaling backend systems and microservices with a focus on cloud infrastructure, event-driven, serverless, 
+                                    and containerized architectures. Known for delivering scalable and cost-effective solutions that support millions of users. Proven leadership 
+                                    in guiding teams, shaping technical strategies, and improving system performance. Continuously motivated to learn and stay at the forefront 
+                                    of technology, I am committed to building systems that power millions of users securely and efficiently that drive business success.
+                                </p>
+                            </div>
+                            <div class="resume-hero-actions">
+                                <button class="resume-hero-btn primary" onclick="downloadResume()">
+                                    <i class="fas fa-download"></i>
+                                    <span>Download Resume</span>
+                                </button>
+                                <button class="resume-hero-btn secondary" onclick="viewPDF()">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Open in New Tab</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="resume-hero-visual">
+                            <div class="resume-preview-card">
+                                <div class="resume-preview-header">
+                                    <div class="preview-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="resume-preview-content">
+                                    <div class="preview-avatar">
+                                        <img src="https://avatars2.githubusercontent.com/u/14794708?v=4" alt="Kumar Saurabh">
+                                    </div>
+                                    <div class="preview-info">
+                                        <h3>Engineering Lead</h3>
+                                        <p>Backend Systems & Cloud Architecture</p>
+                                        
+                                        <div class="rotating-skills">
+                                            <div class="skill-category active" data-category="technical">
+                                                <h4>Technical Skills</h4>
+                                                <div class="skill-tags">
+                                                    <span>Golang</span>
+                                                    <span>DevOps</span>
+                                                    <span>AWS</span>
+                                                    <span>Kubernetes</span>
+                                                    <span>Docker</span>
+                                                    <span>Terraform</span>
+                                                    <span>CI/CD</span>
+                                                    <span>Microservices</span>
+                                                    <span>MQ</span>
+                                                    <span>Redis</span>
+                                                    <span>Kafka</span>
+                                                    <span>Blockchain</span>
+                                                    <span>PostgreSQL</span>
+                                                    <span>MongoDB</span>
+                                                    <span>Prometheus</span>
+                                                    <span>Grafana</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="skill-category" data-category="leadership">
+                                                <h4>Leadership & Management</h4>
+                                                <div class="skill-tags">
+                                                    <span>Engineering Leadership</span>
+                                                    <span>Team Mentorship</span>
+                                                    <span>Technical Strategy</span>
+                                                    <span>Cross-Functional Collaboration</span>
+                                                    <span>Roadmap Planning</span>
+                                                    <span>Team Management</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="skill-category" data-category="additional">
+                                                <h4>Additional Skills</h4>
+                                                <div class="skill-tags">
+                                                    <span>System Design</span>
+                                                    <span>Infrastructure Optimization</span>
+                                                    <span>Cost Efficiency</span>
+                                                    <span>Performance Tuning</span>
+                                                    <span>Event-Driven Architectures</span>
+                                                    <span>HA Distributed Systems</span>
+                                                    <span>Serverless Architecture</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="preview-stats">
+                                            <div class="stat">
+                                                <span class="stat-number">8+</span>
+                                                <span class="stat-label">Years Experience</span>
+                                            </div>
+                                            <div class="stat">
+                                                <span class="stat-number">22K+</span>
+                                                <span class="stat-label">LinkedIn Community</span>
+                                            </div>
+                                            <div class="stat">
+                                                <span class="stat-number">Startups</span>
+                                                <span class="stat-label">to Global Teams</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resume-viewer-section">
+                        <div class="resume-viewer-header">
+                            <h2>Resume</h2>
+                            <div class="resume-viewer-features">
+                                <div class="feature">
+                                    <i class="fas fa-briefcase"></i>
+                                    <span>Work history & leadership</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Technical skills & expertise</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Projects & achievements</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resume-viewer-container">
+                            <div class="pdf-viewer-wrapper">
+                                <div class="pdf-viewer-header">
+                                    <div class="pdf-controls">
+                                        <span class="pdf-title">Kumar Saurabh - Resume.pdf</span>
+                                    </div>
+                                    <div class="pdf-actions">
+                                        <button class="pdf-action-btn" onclick="downloadResume()" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <button class="pdf-action-btn" onclick="viewPDF()" title="Open in New Tab">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="pdf-viewer">
+                                    <iframe src="cv/Kumar_Saurabh_Resume.pdf" width="100%" height="800px" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div id="testimonials" class="tab-pane">
                 <div class="testimonials">
                     <img src="assets/Testimonials/t1.png" alt="Testimonial 1" class="floating-img float-1">
@@ -2610,6 +3493,45 @@
         // Re-append in shuffled order
         images.forEach(img => container.appendChild(img));
     });
+    </script>
+
+    <!-- Resume functionality -->
+    <script>
+        // Resume download and print functions
+        function downloadResume() {
+            // Create a temporary link to trigger download
+            const link = document.createElement('a');
+            link.href = 'cv/Kumar_Saurabh_Resume.pdf';
+            link.download = 'Kumar_Saurabh_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function viewPDF() {
+            // Open PDF in new tab
+            window.open('cv/Kumar_Saurabh_Resume.pdf', '_blank');
+        }
+
+        // Auto-rotating skills
+        function initRotatingSkills() {
+            const skillCategories = document.querySelectorAll('.skill-category');
+            let currentIndex = 0;
+            
+            function rotateSkills() {
+                skillCategories.forEach(cat => cat.classList.remove('active'));
+                skillCategories[currentIndex].classList.add('active');
+                currentIndex = (currentIndex + 1) % skillCategories.length;
+            }
+            
+            // Rotate every 3 seconds
+            setInterval(rotateSkills, 3000);
+        }
+
+        // Initialize rotating skills when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initRotatingSkills();
+        });
     </script>
   </body>
 </html>
