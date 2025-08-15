@@ -705,6 +705,91 @@
             height: calc(100vh - 200px);
             align-items: center;
             margin-top: 80px; /* Add space for navbar */
+            background: rgba(20, 20, 20, 0.3);
+            backdrop-filter: blur(3px);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .testimonials {
+                height: calc(100vh - 120px);
+                padding: 1rem 0;
+                margin-top: 60px;
+                border-radius: 15px;
+                gap: 1rem;
+            }
+            
+            .floating-img {
+                max-width: 80vw !important;
+                height: auto !important;
+                border-radius: 15px;
+                width: auto;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .floating-img img {
+                width: auto;
+                height: auto;
+                border-radius: 15px;
+                display: block;
+                border: none;
+                max-width: 80vw;
+                overflow: hidden;
+            }
+            
+            /* Mobile specific fix for 13.png image */
+            .floating-img[src*="13.png"] img,
+            .floating-img.float-13 img,
+            img[src*="13.png"] {
+                border-radius: 15px !important;
+                -webkit-border-radius: 15px !important;
+                -moz-border-radius: 15px !important;
+                overflow: hidden !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .testimonials {
+                height: calc(100vh - 100px);
+                padding: 0.5rem 0;
+                margin-top: 50px;
+                border-radius: 10px;
+            }
+            
+            .floating-img {
+                max-width: 90vw !important;
+                border-radius: 12px;
+                width: auto;
+                height: auto;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .floating-img img {
+                width: auto;
+                height: auto;
+                border-radius: 12px;
+                display: block;
+                border: none;
+                max-width: 90vw;
+                overflow: hidden;
+            }
+            
+            /* Small mobile specific fix for 13.png image */
+            .floating-img[src*="13.png"] img,
+            .floating-img.float-13 img,
+            img[src*="13.png"] {
+                border-radius: 12px !important;
+                -webkit-border-radius: 12px !important;
+                -moz-border-radius: 12px !important;
+                overflow: hidden !important;
+            }
         }
 
         .testimonials::-webkit-scrollbar {
@@ -719,11 +804,103 @@
             border-radius: 15px;
             overflow: hidden;
             border: none;
-            transition: all 0.3s ease;
-            position: relative;
-            height: auto;
-            display: block;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: absolute;
+            display: inline-block;
             box-shadow: 0 0 20px rgba(0, 180, 255, 0.3), 0 0 40px rgba(0, 102, 255, 0.2);
+            animation: float 15s ease-in-out infinite;
+            cursor: pointer;
+            width: auto;
+            height: auto;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .floating-img img {
+            width: auto;
+            height: auto;
+            border-radius: 15px;
+            display: block;
+            border: none !important;
+            max-width: none;
+            max-height: none;
+            outline: none;
+            box-shadow: none;
+        }
+        
+        /* Specific fix for image 13 */
+        .floating-img[src*="13.png"] {
+            border: none !important;
+            outline: none;
+            box-shadow: none;
+            border-radius: 15px !important;
+            overflow: hidden;
+        }
+        
+        .floating-img[src*="13.png"] img {
+            border: none !important;
+            outline: none;
+            box-shadow: none;
+            border-radius: 15px !important;
+            overflow: hidden;
+        }
+        
+        /* Additional specific targeting for float-13 class */
+        .floating-img.float-13 {
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            -webkit-border-radius: 15px !important;
+            -moz-border-radius: 15px !important;
+        }
+        
+        .floating-img.float-13 img {
+            border-radius: 15px !important;
+            overflow: hidden !important;
+            -webkit-border-radius: 15px !important;
+            -moz-border-radius: 15px !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+        }
+        
+        /* Force rounded corners with maximum specificity */
+        img[src*="13.png"] {
+            border-radius: 15px !important;
+            -webkit-border-radius: 15px !important;
+            -moz-border-radius: 15px !important;
+            overflow: hidden !important;
+        }
+        
+        /* Force proper zoom positioning */
+        .floating-img.zoomed {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            right: auto !important;
+            bottom: auto !important;
+            transform: translate(-50%, -50%) scale(1.02) !important;
+            width: auto !important;
+            max-width: 70vw !important;
+            max-height: 70vh !important;
+            z-index: 9999 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        /* Glow effect for mobile */
+        .floating-img.glowing {
+            box-shadow: 
+                0 0 30px rgba(0, 180, 255, 0.6),
+                0 0 60px rgba(0, 102, 255, 0.4),
+                0 0 90px rgba(0, 255, 136, 0.3);
+            transform: scale(1.05);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-10px) translateX(-15px); }
+            75% { transform: translateY(-15px) translateX(5px); }
         }
 
         .floating-img img {
@@ -1050,15 +1227,16 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 10002;
+            z-index: 9999;
             opacity: 0;
             transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .zoom-modal.active {
@@ -1112,30 +1290,46 @@
         @media (max-width: 768px) {
             .zoom-content {
                 max-width: 95%;
-                max-height: 95%;
+                max-height: 90%;
+                margin: 20px;
             }
             
             .zoom-close {
-                top: -40px;
-                right: -10px;
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
+                top: -50px;
+                right: 0;
+                width: 45px;
+                height: 45px;
+                font-size: 1.8rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+            }
+            
+            .zoom-image {
+                border-radius: 8px;
+                max-height: 80vh;
             }
         }
 
         @media (max-width: 480px) {
             .zoom-content {
                 max-width: 98%;
-                max-height: 98%;
+                max-height: 85%;
+                margin: 10px;
             }
             
             .zoom-close {
-                top: -35px;
-                right: -5px;
-                width: 35px;
-                height: 35px;
-                font-size: 1.2rem;
+                top: -45px;
+                right: 0;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: 2px solid rgba(255, 255, 255, 0.5);
+            }
+            
+            .zoom-image {
+                border-radius: 6px;
+                max-height: 75vh;
             }
         }
 
@@ -3888,7 +4082,9 @@
                     <img src="assets/Testimonials/10.png" alt="Testimonial 10" class="floating-img float-10">
                     <img src="assets/Testimonials/11.png" alt="Testimonial 11" class="floating-img float-11">
                     <img src="assets/Testimonials/12.png" alt="Testimonial 12" class="floating-img float-12">
-                    <img src="assets/Testimonials/13.png" alt="Testimonial 13" class="floating-img float-13">
+                                          <div class="floating-img float-13" style="border-radius: 15px; overflow: hidden;">
+                        <img src="assets/Testimonials/13.png" alt="Testimonial 13" style="border-radius: 15px; width: 100%; height: 100%; object-fit: contain;">
+                      </div>
                     <img src="assets/Testimonials/14.png" alt="Testimonial 14" class="floating-img float-14">
                 </div>
             </section>
@@ -4137,44 +4333,96 @@
             const images = document.querySelectorAll('.floating-img');
             const testimonials = document.querySelector('.testimonials');
             const body = document.body;
+            const isMobile = window.innerWidth <= 768;
 
-            if (window.innerWidth > 900) { // Only enable zoom on desktop
-                images.forEach(img => {
-                    img.addEventListener('click', (e) => {
-                        e.stopPropagation();
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    if (isMobile) {
+                        // Mobile: Only glow effect
+                        const isGlowing = img.classList.contains('glowing');
+                        
+                        // Remove glowing class from all images
+                        images.forEach(i => i.classList.remove('glowing'));
+                        
+                        // Toggle glow state
+                        if (!isGlowing) {
+                            img.classList.add('glowing');
+                        }
+                    } else {
+                        // Desktop: Always center and auto-adjust
                         const isZoomed = img.classList.contains('zoomed');
                         
-                        // Remove zoomed class from all images
-                        images.forEach(i => i.classList.remove('zoomed'));
-                        
-                        // Toggle zoom state
                         if (!isZoomed) {
+                            // Remove zoom from all other images
+                            images.forEach(i => i.classList.remove('zoomed'));
+                            
+                            // Immediately center the image at screen center
+                            img.style.position = 'fixed';
+                            img.style.top = '50%';
+                            img.style.left = '50%';
+                            img.style.transform = 'translate(-50%, -50%) scale(1.02)';
+                            img.style.zIndex = '9999';
+                            img.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                            
+                            // Auto-adjust to fit perfectly in screen
+                            setTimeout(() => {
+                                const rect = img.getBoundingClientRect();
+                                const screenWidth = window.innerWidth;
+                                const screenHeight = window.innerHeight;
+                                
+                                let scale = 1.02;
+                                let translateX = -50;
+                                let translateY = -50;
+                                
+                                // Calculate the maximum scale that fits the image in the screen
+                                const maxWidthScale = (screenWidth * 0.8) / rect.width;
+                                const maxHeightScale = (screenHeight * 0.8) / rect.height;
+                                
+                                // Use the smaller scale to ensure image fits both width and height
+                                scale = Math.min(maxWidthScale, maxHeightScale, 1.02);
+                                
+                                // Apply auto-adjusted transform
+                                img.style.transform = `translate(${translateX}%, ${translateY}%) scale(${scale})`;
+                            }, 50);
+                            
                             img.classList.add('zoomed');
                             testimonials.classList.add('has-zoomed');
                             body.classList.add('has-zoomed');
                         } else {
+                            // Unzoom: Return to original position
+                            img.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                            img.style.position = 'absolute';
+                            img.style.top = '';
+                            img.style.left = '';
+                            img.style.transform = '';
+                            img.style.zIndex = '';
+                            img.classList.remove('zoomed');
                             testimonials.classList.remove('has-zoomed');
                             body.classList.remove('has-zoomed');
                         }
-                    });
+                    }
                 });
-            }
+            });
 
             // Close zoomed image when clicking outside
             testimonials.addEventListener('click', (e) => {
                 if (e.target === testimonials) {
-                    images.forEach(img => img.classList.remove('zoomed'));
-                    testimonials.classList.remove('has-zoomed');
-                    body.classList.remove('has-zoomed');
+                    const zoomedImg = document.querySelector('.floating-img.zoomed');
+                    if (zoomedImg) {
+                        zoomedImg.click(); // Trigger the unzoom
+                    }
                 }
             });
 
             // Close zoomed image on escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    images.forEach(img => img.classList.remove('zoomed'));
-                    testimonials.classList.remove('has-zoomed');
-                    body.classList.remove('has-zoomed');
+                    const zoomedImg = document.querySelector('.floating-img.zoomed');
+                    if (zoomedImg) {
+                        zoomedImg.click(); // Trigger the unzoom
+                    }
                 }
             });
         });
@@ -4358,6 +4606,88 @@
                 testimonialsSection.style.display = 'none';
             }
         }
+        
+        // Floating images with boundary detection and bouncing
+        function initFloatingImages() {
+            const images = document.querySelectorAll('.floating-img');
+            const container = document.querySelector('.testimonials');
+            
+            if (!container || images.length === 0) return;
+            
+            // Get container dimensions
+            const containerRect = container.getBoundingClientRect();
+            const containerWidth = containerRect.width;
+            const containerHeight = containerRect.height;
+            
+            images.forEach((img, index) => {
+                // Get image dimensions
+                const imgRect = img.getBoundingClientRect();
+                const imgWidth = imgRect.width;
+                const imgHeight = imgRect.height;
+                
+                // Calculate boundaries
+                const maxX = containerWidth - imgWidth;
+                const maxY = containerHeight - imgHeight;
+                
+                // Set initial random position within boundaries
+                let x = Math.random() * maxX;
+                let y = Math.random() * maxY;
+                
+                // Random direction and speed (slower)
+                let dx = (Math.random() - 0.5) * 0.8; // Speed between -0.4 and 0.4
+                let dy = (Math.random() - 0.5) * 0.8;
+                
+                // Set initial position
+                img.style.left = x + 'px';
+                img.style.top = y + 'px';
+                img.style.position = 'absolute';
+                
+                function animate() {
+                    // Update position
+                    x += dx;
+                    y += dy;
+                    
+                    // Boundary detection and bouncing
+                    if (x <= 0) {
+                        x = 0;
+                        dx = Math.abs(dx); // Bounce right
+                    } else if (x >= maxX) {
+                        x = maxX;
+                        dx = -Math.abs(dx); // Bounce left
+                    }
+                    
+                    if (y <= 0) {
+                        y = 0;
+                        dy = Math.abs(dy); // Bounce down
+                    } else if (y >= maxY) {
+                        y = maxY;
+                        dy = -Math.abs(dy); // Bounce up
+                    }
+                    
+                    // Apply position
+                    img.style.left = x + 'px';
+                    img.style.top = y + 'px';
+                    
+                    // Continue animation
+                    requestAnimationFrame(animate);
+                }
+                
+                // Start animation with slight delay for each image
+                setTimeout(() => {
+                    animate();
+                }, index * 100);
+            });
+        }
+        
+        // Initialize floating images when testimonials tab is shown
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonialsButton = document.querySelector('[data-target="#testimonials"]');
+            if (testimonialsButton) {
+                testimonialsButton.addEventListener('click', function() {
+                    setTimeout(initFloatingImages, 100);
+                });
+            }
+        });
     </script>
     
     <!-- SEO Footer with Additional Content -->
