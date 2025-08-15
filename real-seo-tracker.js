@@ -443,7 +443,8 @@ class RealTimeSEOTracker {
                 firstInputDelay: 0,
                 cumulativeLayoutShift: 0,
                 firstContentfulPaint: 0
-            }
+            },
+            keywords: this.getTargetKeywords()
         };
         
         // Check for meta tags
@@ -542,6 +543,123 @@ class RealTimeSEOTracker {
         }
         
         return analysis;
+    }
+    
+    getTargetKeywords() {
+        return {
+            primary: [
+                "Kumar Saurabh",
+                "Engineering Lead",
+                "Golang Developer",
+                "DevOps Engineer",
+                "Cloud Architect",
+                "Backend Developer",
+                "Site Reliability Engineer",
+                "Technical Lead"
+            ],
+            secondary: [
+                "Kubernetes Expert",
+                "AWS Cloud Architect",
+                "Blockchain Developer",
+                "Web3 Developer",
+                "System Design Expert",
+                "Microservices Architect",
+                "Infrastructure Engineer",
+                "Platform Engineer",
+                "Software Architect",
+                "Technical Architect"
+            ],
+            longTail: [
+                "Engineering Lead with 8+ years experience",
+                "Golang backend developer for hire",
+                "DevOps consultant India",
+                "Cloud architecture expert",
+                "Blockchain development services",
+                "Kubernetes implementation expert",
+                "AWS infrastructure design",
+                "Technical team leadership",
+                "Backend system design",
+                "Microservices architecture design",
+                "Event-driven architecture expert",
+                "Serverless architecture consultant",
+                "High availability system design",
+                "Scalable backend development",
+                "Performance optimization expert",
+                "Cost optimization cloud",
+                "Technical strategy consultant",
+                "Engineering team mentorship",
+                "Remote engineering leadership",
+                "Startup to enterprise scaling"
+            ],
+            skills: [
+                "Golang programming",
+                "Kubernetes orchestration",
+                "AWS cloud services",
+                "Terraform infrastructure",
+                "Docker containerization",
+                "CI/CD pipeline design",
+                "PostgreSQL database",
+                "Redis caching",
+                "Kafka messaging",
+                "Prometheus monitoring",
+                "Grafana visualization",
+                "Helm charts",
+                "Ansible automation",
+                "GitOps practices",
+                "Site reliability engineering",
+                "Performance tuning",
+                "Security best practices",
+                "API design",
+                "RESTful services",
+                "gRPC development"
+            ],
+            industries: [
+                "Fintech engineering",
+                "Blockchain technology",
+                "E-commerce platforms",
+                "SaaS development",
+                "Healthcare technology",
+                "EdTech solutions",
+                "Gaming infrastructure",
+                "IoT platforms",
+                "AI/ML infrastructure",
+                "Data engineering",
+                "Real-time systems",
+                "Payment processing",
+                "Cryptocurrency platforms",
+                "DeFi development",
+                "NFT marketplace",
+                "Metaverse infrastructure",
+                "Cloud migration",
+                "Digital transformation",
+                "Legacy system modernization",
+                "Greenfield development"
+            ],
+            locations: [
+                "Engineering Lead India",
+                "Golang Developer Bangalore",
+                "DevOps Engineer Mumbai",
+                "Cloud Architect Delhi",
+                "Backend Developer Pune",
+                "Remote Engineering Lead",
+                "India Engineering Lead",
+                "Global Engineering Lead",
+                "US Engineering Lead",
+                "Europe Engineering Lead"
+            ],
+            experience: [
+                "Senior Engineering Lead",
+                "Principal Engineer",
+                "Staff Engineer",
+                "Engineering Manager",
+                "Technical Director",
+                "VP Engineering",
+                "CTO consultant",
+                "Engineering consultant",
+                "Technical advisor",
+                "Architecture consultant"
+            ]
+        };
     }
     
     showLoading() {

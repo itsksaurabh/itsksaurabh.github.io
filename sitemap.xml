@@ -36,6 +36,14 @@
         <priority>0.7</priority>
     </url>
     
+    <!-- SEO Score Dashboard -->
+    <url>
+        <loc>https://www.kumar-saurabh.com/seo-score.html</loc>
+        <lastmod>2024-01-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
     <url>
         <loc>https://www.kumar-saurabh.com/blog/Dequinox/</loc>
         <lastmod>2024-01-15</lastmod>

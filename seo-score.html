@@ -145,10 +145,26 @@
             color: #00b4ff;
         }
 
+        .keyword-category {
+            margin-bottom: 30px;
+        }
+
+        .keyword-category h4 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+            padding-bottom: 5px;
+        }
+
         .keyword-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
+        }
+
+        .keyword-list.long-tail {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
 
         .keyword-item {
@@ -301,31 +317,155 @@
         </div>
 
         <div class="keyword-tracking">
-            <h3>Target Keyword Rankings</h3>
-            <div class="keyword-list">
-                <div class="keyword-item">
-                    <div class="keyword-text">"Kumar Saurabh"</div>
-                    <div class="keyword-rank">Top 3</div>
+            <h3>Comprehensive Target Keywords</h3>
+            
+            <div class="keyword-category">
+                <h4>🎯 Primary Keywords</h4>
+                <div class="keyword-list">
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Kumar Saurabh"</div>
+                        <div class="keyword-rank">Top 3</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Engineering Lead"</div>
+                        <div class="keyword-rank">Top 10</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Golang Developer"</div>
+                        <div class="keyword-rank">Top 15</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"DevOps Engineer"</div>
+                        <div class="keyword-rank">Top 20</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Cloud Architect"</div>
+                        <div class="keyword-rank">Top 25</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Backend Developer"</div>
+                        <div class="keyword-rank">Top 30</div>
+                    </div>
                 </div>
-                <div class="keyword-item">
-                    <div class="keyword-text">"Engineering Lead"</div>
-                    <div class="keyword-rank">Top 10</div>
+            </div>
+            
+            <div class="keyword-category">
+                <h4>⚡ Secondary Keywords</h4>
+                <div class="keyword-list">
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Kubernetes Expert"</div>
+                        <div class="keyword-rank">Top 35</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"AWS Cloud Architect"</div>
+                        <div class="keyword-rank">Top 40</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Blockchain Developer"</div>
+                        <div class="keyword-rank">Top 45</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Web3 Developer"</div>
+                        <div class="keyword-rank">Top 50</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"System Design Expert"</div>
+                        <div class="keyword-rank">Top 55</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Microservices Architect"</div>
+                        <div class="keyword-rank">Top 60</div>
+                    </div>
                 </div>
-                <div class="keyword-item">
-                    <div class="keyword-text">"Golang Developer"</div>
-                    <div class="keyword-rank">Top 15</div>
+            </div>
+            
+            <div class="keyword-category">
+                <h4>🚀 Long-tail Keywords</h4>
+                <div class="keyword-list long-tail">
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Engineering Lead with 8+ years experience"</div>
+                        <div class="keyword-rank">Top 20</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Golang backend developer for hire"</div>
+                        <div class="keyword-rank">Top 25</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"DevOps consultant India"</div>
+                        <div class="keyword-rank">Top 30</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Cloud architecture expert"</div>
+                        <div class="keyword-rank">Top 35</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Blockchain development services"</div>
+                        <div class="keyword-rank">Top 40</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Kubernetes implementation expert"</div>
+                        <div class="keyword-rank">Top 45</div>
+                    </div>
                 </div>
-                <div class="keyword-item">
-                    <div class="keyword-text">"DevOps Engineer"</div>
-                    <div class="keyword-rank">Top 20</div>
+            </div>
+            
+            <div class="keyword-category">
+                <h4>💼 Industry Keywords</h4>
+                <div class="keyword-list">
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Fintech engineering"</div>
+                        <div class="keyword-rank">Top 50</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Blockchain technology"</div>
+                        <div class="keyword-rank">Top 55</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"SaaS development"</div>
+                        <div class="keyword-rank">Top 60</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"E-commerce platforms"</div>
+                        <div class="keyword-rank">Top 65</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Payment processing"</div>
+                        <div class="keyword-rank">Top 70</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Cryptocurrency platforms"</div>
+                        <div class="keyword-rank">Top 75</div>
+                    </div>
                 </div>
-                <div class="keyword-item">
-                    <div class="keyword-text">"Cloud Architect"</div>
-                    <div class="keyword-rank">Top 25</div>
-                </div>
-                <div class="keyword-item">
-                    <div class="keyword-text">"Kubernetes Expert"</div>
-                    <div class="keyword-rank">Top 30</div>
+            </div>
+            
+            <div class="keyword-category">
+                <h4>🌍 Location Keywords</h4>
+                <div class="keyword-list">
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Engineering Lead India"</div>
+                        <div class="keyword-rank">Top 15</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Golang Developer Bangalore"</div>
+                        <div class="keyword-rank">Top 20</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"DevOps Engineer Mumbai"</div>
+                        <div class="keyword-rank">Top 25</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Cloud Architect Delhi"</div>
+                        <div class="keyword-rank">Top 30</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Remote Engineering Lead"</div>
+                        <div class="keyword-rank">Top 35</div>
+                    </div>
+                    <div class="keyword-item">
+                        <div class="keyword-text">"Global Engineering Lead"</div>
+                        <div class="keyword-rank">Top 40</div>
+                    </div>
                 </div>
             </div>
         </div>
