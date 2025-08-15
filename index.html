@@ -2039,8 +2039,13 @@
             letter-spacing: 2px;
             text-align: left;
             text-shadow: 0 0 8px rgba(0, 180, 255, 0.4);
-            white-space: nowrap;
+            white-space: normal;
             font-weight: 600;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            max-width: 100%;
         }
 
         .resume-hero-description {
@@ -2050,6 +2055,8 @@
             max-width: 600px;
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
         }
+
+
 
         .resume-hero-actions {
             display: flex;
@@ -2110,8 +2117,10 @@
             flex: 1;
             display: flex;
             justify-content: center;
+            align-items: center;
             z-index: 2;
             position: relative;
+            min-width: 0;
         }
 
         .resume-preview-card {
@@ -2122,6 +2131,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             max-width: 600px;
+            min-width: 320px;
             width: 100%;
             animation: float 6s ease-in-out infinite;
         }
@@ -2480,6 +2490,16 @@
                 font-size: 2.5rem;
             }
             
+            .resume-hero-subtitle {
+                font-size: 1.1rem;
+                white-space: normal;
+                text-align: center;
+            }
+            
+            .resume-hero-description {
+                font-size: 1rem;
+            }
+            
             .resume-hero-actions {
                 justify-content: center;
             }
@@ -2488,6 +2508,9 @@
         @media (max-width: 768px) {
             .resume-container {
                 padding: 0;
+                width: 100vw !important;
+                margin-left: 0 !important;
+                padding-left: 0 !important;
             }
             
             .resume-hero {
@@ -2500,11 +2523,15 @@
             }
             
             .resume-hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                white-space: normal;
+                letter-spacing: 1px;
+                text-align: center;
             }
             
             .resume-hero-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
             
             .resume-hero-actions {
@@ -2519,17 +2546,30 @@
             }
             
             .resume-preview-card {
-                max-width: 100%;
+                max-width: 90%;
+                min-width: 350px;
                 padding: 1.5rem;
+            }
+            
+            .preview-info h3 {
+                font-size: 1.3rem;
+            }
+            
+            .preview-info p {
+                font-size: 0.9rem;
             }
             
             .rotating-skills {
                 height: 180px;
             }
             
+            .skill-category h4 {
+                font-size: 0.9rem;
+            }
+            
             .skill-tags span {
-                font-size: 0.6rem;
-                padding: 0.2rem 0.6rem;
+                font-size: 0.65rem;
+                padding: 0.25rem 0.7rem;
             }
             
             .preview-stats {
@@ -2538,11 +2578,11 @@
             }
             
             .stat-number {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             
             .stat-label {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
             
             .pdf-viewer {
@@ -2584,6 +2624,12 @@
         }
 
         @media (max-width: 600px) {
+            .resume-container {
+                width: 100vw !important;
+                margin-left: 0 !important;
+                padding-left: 0 !important;
+            }
+            
             .resume-hero {
                 margin: 0.5rem;
                 padding: 1.5rem 1rem;
@@ -2594,15 +2640,29 @@
             }
             
             .resume-hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                white-space: normal;
+                letter-spacing: 0.5px;
+                text-align: center;
             }
             
             .resume-hero-description {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
             
             .resume-preview-card {
-                padding: 1rem;
+                max-width: 95%;
+                min-width: 300px;
+                padding: 1.2rem;
+            }
+            
+            .preview-info h3 {
+                font-size: 1.1rem;
+            }
+            
+            .preview-info p {
+                font-size: 0.8rem;
             }
             
             .rotating-skills {
@@ -2610,12 +2670,12 @@
             }
             
             .skill-category h4 {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .skill-tags span {
-                font-size: 0.5rem;
-                padding: 0.15rem 0.5rem;
+                font-size: 0.55rem;
+                padding: 0.2rem 0.6rem;
             }
             
             .preview-stats {
@@ -2654,6 +2714,12 @@
         }
 
         @media (max-width: 480px) {
+            .resume-container {
+                width: 100vw !important;
+                margin-left: 0 !important;
+                padding-left: 0 !important;
+            }
+            
             .resume-hero {
                 margin: 0.25rem;
                 padding: 1rem 0.5rem;
@@ -2664,15 +2730,21 @@
             }
             
             .resume-hero-subtitle {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
+                white-space: normal;
+                letter-spacing: 0.5px;
+                text-align: center;
             }
             
             .resume-hero-description {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                line-height: 1.4;
             }
             
             .resume-preview-card {
-                padding: 0.8rem;
+                max-width: 98%;
+                min-width: 280px;
+                padding: 1rem;
             }
             
             .rotating-skills {
